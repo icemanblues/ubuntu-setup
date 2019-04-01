@@ -21,6 +21,6 @@ There are two things you can do about this warning:
 ;; backup files in one place. flat, no tree structure
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 
-;; recommended from john
+;; remove tool and menu bars. know your hotkeys
 (tool-bar-mode 0)
 (menu-bar-mode 0)
