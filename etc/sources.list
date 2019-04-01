@@ -1,0 +1,12 @@
+# peek
+sudo add-apt-repository ppa:peek-developers/stable
+sudo apt update
+sudo apt install peek
+
+# wine
+sudo apt-add-repository ppa:ubuntu-wine/ppa
+
+# retroarch
+sudo add-apt-repository ppa:libretro/stable
+sudo apt-get update
+sudo apt-get install retroarch retroarch-* libretro-*
