@@ -1,3 +1,22 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(custom-enabled-themes (quote (deeper-blue)))
+ '(package-selected-packages
+   (quote
+    (web-mode company-jedi lsp-javascript-typescript lsp-python-ms lsp-java lsp-python lsp-mode multi-term magit dockerfile-mode restclient nginx-mode markdown-mode golint go-guru go-dlv go-imports go-tag go-complete go-autocomplete company-go go-mode)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 ;;; MELPA
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -18,9 +37,18 @@ There are two things you can do about this warning:
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-;; backup files in one place. flat, no tree structure
+;; backup in one place. flat, no tree structure
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 
-;; remove tool and menu bars. know your hotkeys
-(tool-bar-mode 0)
-(menu-bar-mode 0)
+;; additional keybings
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key [f5] 'compile)
+(global-set-key [f6] 'goto-line)
+
+;; my recommendations
+(global-linum-mode 1)
+
+;; recommended from john
+;(tool-bar-mode 0)
+;(menu-bar-mode 0)
+;(scroll-bar-mode 0)
