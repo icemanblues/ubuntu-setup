@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# battery performance tuning
+/usr/sbin/powertop --auto-tune
+
+# let the keyboard remain enabled
+echo 'on' > '/sys/bus/usb/devices/1-11/power/control'
