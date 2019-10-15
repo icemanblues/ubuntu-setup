@@ -1,0 +1,9 @@
+[Unit]
+Description=Powertop tunings
+
+[Service]
+Type=idle
+ExecStart=/usr/local/bin/powertop-opt
+
+[Install]
+WantedBy=multi-user.target
