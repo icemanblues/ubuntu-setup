@@ -50,15 +50,16 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 ### Programming Languages
 # Python
-export PATH="/opt/python/current/bin:$PATH"
+#export PATH="/opt/python/current/bin:$PATH"
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=~/.virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
 # Go
 export PATH="/opt/go/current/bin:$PATH"
-export GOPATH="~/go"
-export PATH="$GOPATH/bin:$PATH"
 # Java
 export JAVA_HOME="/opt/openjdk/current"
 export PATH="$JAVA_HOME/bin:$PATH"
-# nvm npm javascript
+# Javascript nvm npm 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
