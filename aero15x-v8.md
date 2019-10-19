@@ -3,6 +3,10 @@
 This is my laptop and I'll keep track of any one-off commands specific to its configurations here.
 Hopefully there will not be that many.
 
+Excellent collection of tuning tricks
+http://forum.notebookreview.com/threads/tuning-the-aero-15-w-x-v7-v8-common-problems-solutions.816143/
+
+
 ## External display
 
 edit this file ` /lib/modprobe.d/nvidia-kms.conf`
