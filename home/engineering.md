@@ -21,6 +21,12 @@ I normally use the system provided python3.
 
 Since this is for ubuntu, I install the apt repo version of the following tools
 
+If you want a version of python that is not yet in the repo, you have to add this PPA
+`sudo add-apt-repository ppa:deadsnakes/ppa`
+
+python source can also be downloaded, configured, and built locally
+I followed the steps here: https://websiteforstudents.com/installing-the-latest-python-3-7-on-ubuntu-16-04-18-04/
+
 * pip (python2)
 * pip3 (python3)
 * virtualenv (python2)
