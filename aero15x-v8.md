@@ -16,6 +16,12 @@ comment out this line:
 #options nvidia-drm modeset=1
 ```
 
+## Keyboard RGB controller
+
+https://github.com/guillaumesalagnac/fusion-kbd-controller
+
+git clone this. compile it. follow the usage instructions
+
 ## Undervolt
 
 global install of the undervolt package
