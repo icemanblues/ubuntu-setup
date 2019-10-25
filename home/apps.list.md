@@ -5,6 +5,7 @@ These are 3rd party applications that I like to install for my uses
 * airvpn
 * peek
 * steam
+* retroarch
 * wine
   * dxvk
   * lutris
@@ -13,7 +14,9 @@ These are 3rd party applications that I like to install for my uses
 * intellij
 
 
-## AirVPN
+## Utilities
+
+### AirVPN
 
 VPN and openvpn so that one may browse the internet anonymously.
 
@@ -22,7 +25,7 @@ This will also add an apt-repo to keep it updated
 
 https://www.airvpn.org
 
-## Peek
+### Peek
 
 Peek is a simple screen recorder to generate gifs
 
@@ -36,6 +39,13 @@ https://github.com/phw/peek#installation
 Steam is Valve's game store and launcher
 
 Steam is available in the ubuntu repo
+
+### retroarch
+
+emulator framework
+
+Find their ubuntu ppa and add it according to their instructions
+https://www.retroarch.com/index.php?page=linux-instructions
 
 ### Wine
 
