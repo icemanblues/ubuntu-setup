@@ -32,7 +32,13 @@ Peek is a simple screen recorder to generate gifs
 Install the ubuntu apt-repo as per:
 https://github.com/phw/peek#installation
 
-## Gaming
+### VLC
+
+It plays everything. It is also available as a snap
+
+### MPV
+
+It plays everything. Pretty neat support for streaming services too
 
 ### Steam
 
