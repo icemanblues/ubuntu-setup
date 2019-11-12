@@ -9,30 +9,74 @@ But then I will have to learn elisp to do that
 Below are the packages I use all the time. This git repo is an impressive list and collection
 of some of the best and awesome packages available: https://github.com/emacs-tw/awesome-emacs
 
-* markdown-mode
+
+### emacs
+
+* use-package
+* which-key
+* ace-window
+* iedit
+* org-bullets
+
+* swiper
+* ag
+* helm
+* avy
+
+* treemacs
+* centaur tabs
+
+### Engineering Utilies
+
 * magit
+* docker
+
+### Programming modes
+
+* markdown-mode
 * go-mode
+* docker-mode
+* docker-compose-mode
+* nginx-mode
+* yaml-mode
+* json-mode
 
 * web-mode
+* tide
+* js2-mode
+
+### IDE functionality
+
+* lsp-mode
+  * lsp-ui
+  * company-lsp
+  * dap-mode
+* flycheck
+* company
+* projectile
+
+* dumb-jump
+* gg-tags
+
+* yasnippet
+  * yasnippet-snippets 
+
 * web-beautify
 * restclient.el
-* js2-mode
-* json-mode
-* rjsx-mode
-* tide
+
+### Python
+
+* jedi
+* pyenv-mode
+* elpy
+
+### Communication
 
 * gnus
 * wanderlust
 * slack
 * twittering-mode
 
-* docker
-* docker-mode
-* docker-compose-mode
-* nginx-mode
-
-* lsp-mode
-* flycheck
-* company-mode
+### Fun
 
 * nyan-mode
