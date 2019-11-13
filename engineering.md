@@ -68,6 +68,11 @@ nvm install node
 * intellij ?
   download and install to a local directory, add to PATH
 
+## Markdown
+
+* markdown
+* grip
+
 ## Database clients
 
 * dbeaver

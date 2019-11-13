@@ -2,18 +2,6 @@
 
 These are 3rd party applications that I like to install for my uses
 
-* airvpn
-* peek
-* steam
-* retroarch
-* wine
-  * dxvk
-  * lutris
-* vscode
-* dbeaver
-* intellij
-
-
 ## Utilities
 
 ### AirVPN
