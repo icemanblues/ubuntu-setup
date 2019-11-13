@@ -99,5 +99,5 @@ Popular Images:
 
 ### nginx
 
-install the ubunut repo version
+install the ubuntu repo version
 

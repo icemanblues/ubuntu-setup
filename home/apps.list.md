@@ -4,6 +4,10 @@ These are 3rd party applications that I like to install for my uses
 
 ## Utilities
 
+### hunspell
+one of the best spell checkers arounds
+ubuntu repo
+
 ### AirVPN
 
 VPN and openvpn so that one may browse the internet anonymously.
