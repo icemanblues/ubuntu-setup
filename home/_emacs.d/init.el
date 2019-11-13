@@ -37,6 +37,10 @@
 (when (memq window-system '(mac ns))
   (set-frame-font "Menlo 16" nil t))
 
+;;; flyspell (hunspell)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
 ;;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
 (global-set-key [f6] 'goto-line)
@@ -148,10 +152,13 @@
 ;;; Code Modes:
 
 (use-package markdown-mode
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)) ; must install locally
-  :init (setq markdown-command "grip"))      ; markdown or grip
+  :mode
+  (("README\\.md\\'" . gfm-mode)
+   ("\\.md\\'" . markdown-mode)
+   ("\\.markdown\\'" . markdown-mode))
+  :init                               ; must install locally
+  (setq markdown-command "markdown")  ; markdown or grip
+  (setq markdown-split-window-direction 'right))
 
 (use-package json-mode)
 (use-package yaml-mode)
