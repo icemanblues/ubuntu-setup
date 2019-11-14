@@ -8,6 +8,11 @@ These are 3rd party applications that I like to install for my uses
 one of the best spell checkers arounds
 ubuntu repo
 
+### markdown
+### grip
+
+Both are markdown engines
+
 ### AirVPN
 
 VPN and openvpn so that one may browse the internet anonymously.
@@ -31,6 +36,11 @@ It plays everything. It is also available as a snap
 ### MPV
 
 It plays everything. Pretty neat support for streaming services too
+
+### OBS Studio
+
+Excellent software for recording your desktop and screen.
+Can also be used for streaming.
 
 ### Steam
 
