@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
+    (treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -27,6 +27,7 @@
 (global-linum-mode 1)
 (show-paren-mode t)
 (tool-bar-mode 0)
+(global-hl-line-mode t)
 
 ;;; backup file tweaks
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
@@ -93,10 +94,6 @@
 ;;;; iedit
 (use-package iedit)
 
-;;;; org-bullets
-(use-package org-bullets
-  :config (add-hook 'org-mode-hook 'org-bullets-mode))
-
 ;;;; ace-windows
 (use-package ace-window
   :bind ("M-o" . ace-window))
@@ -109,6 +106,7 @@
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+(setq ivy-display-style 'fancy)
 ;; enable this if you want `swiper' to use it
 ;; (setq search-default-mode #'char-fold-to-regexp)
 (global-set-key "\C-s" 'swiper)
@@ -126,6 +124,22 @@
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+;;;
+;;; ORG MODE
+;;;
+
+;;;; org-bullets
+(use-package org-bullets
+  :config (add-hook 'org-mode-hook 'org-bullets-mode))
+
+(setq org-log-done 'time)
+
+;;;; agenda
+
+;;;; capture
+
+;;;; babel
 
 ;;;
 ;;; Utilities
@@ -157,7 +171,10 @@
 
 ;;;; company
 (use-package company
-  :config (add-hook 'after-init-hook 'global-company-mode))
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;;;; yasnippet
 (use-package yasnippet
@@ -171,6 +188,29 @@
 ;;;; hl-todo
 (use-package hl-todo
   :config (global-hl-todo-mode))
+
+;;;; treemacs
+(use-package treemacs
+  :config
+  ;;(treemacs-resize-icons 44) ; uncomment on Hi-DPI display
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-fringe-indicator-mode t)
+  :bind
+  (:map global-map
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
+(use-package treemacs-projectile
+  :after treemacs projectile)
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :config (treemacs-icons-dired-mode))
+(use-package treemacs-magit
+  :after treemacs magit)
 
 ;;; Code Modes:
 
