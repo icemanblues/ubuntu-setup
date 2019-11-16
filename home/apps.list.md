@@ -13,6 +13,10 @@ ubuntu repo
 
 Both are markdown engines
 
+### hugo
+
+static site generator
+
 ### AirVPN
 
 VPN and openvpn so that one may browse the internet anonymously.
@@ -47,6 +51,10 @@ Can also be used for streaming.
 Steam is Valve's game store and launcher
 
 Steam is available in the ubuntu repo
+
+### Gnome Twitch
+
+player for twitch, full hardware acceleration
 
 ### retroarch
 
