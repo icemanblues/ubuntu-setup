@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
+    (lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,6 +28,11 @@
 (show-paren-mode t)
 (tool-bar-mode 0)
 (global-hl-line-mode t)
+
+;;; a tab is 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 ;;; backup file tweaks
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
@@ -173,7 +178,7 @@
 (use-package company
   :config
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3)
+  (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
 ;;;; yasnippet
@@ -212,6 +217,24 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
+;;;
+;;; LSP MODE
+;;;
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred))
+
+;; company-lsp integrates company mode completion with lsp-mode.
+;; completion-at-point also works out of the box but doesn't support snippets.
+(use-package company-lsp
+  :commands company-lsp)
+
+;; Optional - provides fancier overlays.
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
 ;;; Code Modes:
 
 (use-package markdown-mode
@@ -240,6 +263,13 @@
 (use-package company-jedi)
 
 ;;;; golang
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
 (use-package go-mode)
 (use-package company-go)
 ;; (add-hook 'go-mode-hook 'lsp-deferred) ;; lsp-mode ;; from go-mode
@@ -258,19 +288,3 @@
 
 ;;;; nyan-mode
 (use-package nyan-mode)
-
-;;;
-;;; LSP MODE
-;;;
-
-;;;; lsp-mode
-;;(use-package lsp-mode
-;;  :hook (XXX-mode . lsp)
-;;  :commands lsp)
-
-;;;; lsp-ui
-;;(use-package lsp-ui :commands lsp-ui-mode)
-;;;; company-lsp
-;;(use-package company-lsp :commands company-lsp)
-;;;; dap-mode
-;;(use-package dap-mode)
