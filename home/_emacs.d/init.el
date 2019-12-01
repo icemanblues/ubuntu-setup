@@ -41,10 +41,10 @@
 ;;; Font tweaks
 ;; ubuntu linux
 (when (memq window-system '(x))
-  (set-frame-font "Ubuntu Mono 16" nil t))
+  (set-frame-font "Ubuntu Mono 12" nil t))
 ;; macos
 (when (memq window-system '(mac ns))
-  (set-frame-font "Menlo 16" nil t))
+  (set-frame-font "Menlo 12" nil t))
 
 ;;; flyspell (hunspell)
 (add-hook 'text-mode-hook 'flyspell-mode)
