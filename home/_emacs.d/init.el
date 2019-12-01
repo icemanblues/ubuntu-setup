@@ -28,6 +28,7 @@
 (show-paren-mode t)
 (tool-bar-mode 0)
 (global-hl-line-mode t)
+(setq inhibit-startup-screen t)
 
 ;;; a tab is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -251,9 +252,13 @@
 
 ;;;; front-end
 (use-package web-mode)
-(use-package tide)
 (use-package js2-mode)
-;;(use-package web-beautify)
+(use-package typescript-mode)
+(use-package tide
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
 
 ;;;; restclient
 (use-package restclient)
