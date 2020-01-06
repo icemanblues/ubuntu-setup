@@ -49,18 +49,29 @@ function parse_git_dirty {
 export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\e[33m\]\`parse_git_branch\`\[\e[m\]\[\033[00m\]\n\$ "
 
 ### Programming Languages
+
 # Python
 #export PATH="/opt/python/current/bin:$PATH"
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=~/.virtualenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+export WORKON_HOME="~/.virtualenv"
 source /usr/local/bin/virtualenvwrapper.sh
+
 # Go
 export PATH="/opt/go/current/bin:$PATH"
 export GOPATH="/home/roland/go"
 export PATH="$GOPATH/bin:$PATH"
+
+# Flutter / Dart
+export FLUTTER_HOME="/opt/flutter/current"
+export PATH="$FLUTTER_HOME/bin:$PATH"
+# Android studio
+export ANDROID_STUDIO_HOME="/home/roland/apps/android-studio/current"
+export PATH="$ANDROID_STUDIO_HOME/bin:$PATH"
+
 # Java
 export JAVA_HOME="/opt/openjdk/current"
 export PATH="$JAVA_HOME/bin:$PATH"
+
 # Javascript nvm npm 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

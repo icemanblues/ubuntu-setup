@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
+    (flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -188,8 +188,8 @@
 (use-package yasnippet-snippets)
 
 ;;;; editorconfig
-(use-package editorconfig
-  :config (editorconfig-mode 1))
+;;(use-package editorconfig
+;;  :config (editorconfig-mode 1))
 
 ;;;; hl-todo
 (use-package hl-todo
@@ -265,7 +265,21 @@
 (use-package company-restclient)
 
 ;;;; python
-(use-package company-jedi)
+(use-package elpy
+  :init (elpy-enable))
+
+;;;; flutter / dart
+(use-package dart-mode)
+
+(use-package flutter
+  :after dart-mode
+  :bind (:map dart-mode-map
+              ("C-M-x" . #'flutter-run-or-hot-reload)))
+
+(use-package flutter-l10n-flycheck
+  :after flutter
+  :config
+  (flutter-l10n-flycheck-setup))
 
 ;;;; golang
 (use-package go-mode)
