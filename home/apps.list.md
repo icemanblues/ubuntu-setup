@@ -6,7 +6,8 @@ These are 3rd party applications that I like to install for my uses
 
 ### hunspell
 one of the best spell checkers arounds
-ubuntu repo
+
+NB: may also need to include the US english dictionary
 
 ### markdown
 ### grip
@@ -16,6 +17,12 @@ Both are markdown engines
 ### hugo
 
 static site generator
+
+### silversearcher-ag
+### ripgrep
+
+both are pattern based file searchers
+code search tools
 
 ### AirVPN
 

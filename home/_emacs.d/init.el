@@ -171,6 +171,11 @@
   (projectile-mode +1))
 (setq projectile-project-search-path '("~/github/")) ; put all your project directories here
 
+;;;; search
+(use-package ag)
+(use-package deadgrep)
+(use-package wgrep)
+
 ;;;; flycheck
 (use-package flycheck
   :config (global-flycheck-mode))
