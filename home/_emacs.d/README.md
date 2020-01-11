@@ -7,8 +7,48 @@ But then I will have to learn elisp to do that
 ## Packages
 
 Below are the packages I use all the time. This git repo is an impressive list and collection
-of some of the best and awesome packages available: https://github.com/emacs-tw/awesome-emacs
+of some of the best and awesome packages available:
 
+[Awesome Emacs](https://github.com/emacs-tw/awesome-emacs)
+
+Also, I wanted to give some shout-outs to great emacs pioneers that have helped learn and use emacs.
+The urge and need to continuously improve and tinker with emacs will never end.
+
+* [Eli Barzilay](https://www.barzilay.org/)
+* [Mike Zamaski](https://cestlaz.github.io/stories/emacs/)
+* [Ian Pan](https://github.com/ianpan870102)
+* [/r/emacs](https://emacs.reddit.com) community
+* [emacs stackexchange](https://emacs.stackexchange.com) community
+
+### Research
+
+These packages are ones that I want to learn more about and to add them to my workflows.
+
+* pdf-tools
+
+* emmet-mode
+
+* ivy-posframe
+* ivy-rich
+* all-the-icons
+* dimish
+
+* prescient
+* ivy-prescient
+* company-prescient
+
+* goto-last-change
+* goto-chg
+
+* rainbow-mode
+* rainbow-delimiters
+
+I should also look to migrate more functionality to LSP mode
+
+* javascript/ typescript
+* python
+* java
+  * c/c++
 
 ### emacs
 
@@ -17,11 +57,15 @@ of some of the best and awesome packages available: https://github.com/emacs-tw/
 * ace-window
 * iedit
 * org-bullets
+* flyspell
 
+* ivy
+* counsel
 * swiper
+
 * ag
-* helm
-* avy
+* ripgrep
+* deadgrep
 
 * treemacs
 * centaur tabs
@@ -35,12 +79,11 @@ of some of the best and awesome packages available: https://github.com/emacs-tw/
 
 * markdown-mode
 * go-mode
-* docker-mode
 * docker-compose-mode
 * nginx-mode
 * yaml-mode
 * json-mode
-
+* docker-mode
 * web-mode
 * tide
 * js2-mode
@@ -55,19 +98,13 @@ of some of the best and awesome packages available: https://github.com/emacs-tw/
 * company
 * projectile
 
-* dumb-jump
-* gg-tags
-
 * yasnippet
   * yasnippet-snippets 
 
-* web-beautify
 * restclient.el
 
 ### Python
 
-* jedi
-* pyenv-mode
 * elpy
 
 ### Communication

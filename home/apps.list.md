@@ -24,6 +24,10 @@ static site generator
 both are pattern based file searchers
 code search tools
 
+### imagemagick
+
+used by pdf-tools and many other ubuntu apps
+
 ### AirVPN
 
 VPN and openvpn so that one may browse the internet anonymously.
