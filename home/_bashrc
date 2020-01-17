@@ -55,7 +55,7 @@ export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
 export WORKON_HOME="~/.virtualenv"
 source /usr/local/bin/virtualenvwrapper.sh
-
+export PATH="/home/roland/.local/bin:$PATH"
 # Go
 export PATH="/opt/go/current/bin:$PATH"
 export GOPATH="/home/roland/go"
@@ -64,8 +64,10 @@ export PATH="$GOPATH/bin:$PATH"
 # Flutter / Dart
 export FLUTTER_HOME="/opt/flutter/current"
 export PATH="$FLUTTER_HOME/bin:$PATH"
+export DART_HOME="$FLUTTER_HOME/bin/cache/dart-sdk"
+export PATH="$DART_HOME/bin:$PATH"
 # Android studio
-export ANDROID_STUDIO_HOME="/home/roland/apps/android-studio/current"
+export ANDROID_STUDIO_HOME="/opt/android-studio/current"
 export PATH="$ANDROID_STUDIO_HOME/bin:$PATH"
 
 # Java

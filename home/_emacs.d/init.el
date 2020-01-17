@@ -7,9 +7,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("dd854be6626a4243375fd290fec71ed4befe90f1186eb5b485a9266011e15b29" "0c9f63c9d90d0d135935392873cd016cc1767638de92841a5b277481f1ec1f4a" default)))
  '(package-selected-packages
    (quote
-    (centaur-tabs pdf-tools ripgrep wgrep deadgrep ag flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
+    (rjsx-mode lsp-clients dap-go dap-java lsp-java dap-python centaur-tabs pdf-tools ripgrep wgrep deadgrep ag flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -22,7 +25,6 @@
 ;;;
 
 ;;; UI tweaks
-(load-theme 'deeper-blue)
 (column-number-mode t)
 (global-linum-mode 1)
 (show-paren-mode t)
@@ -41,14 +43,10 @@
 ;;; Font tweaks
 ;; ubuntu linux
 (when (memq window-system '(x))
-  (set-frame-font "Ubuntu Mono 12" nil t))
+  (set-frame-font "Ubuntu Mono 14" nil t))
 ;; macos
 (when (memq window-system '(mac ns))
-  (set-frame-font "Menlo 12" nil t))
-
-;;; flyspell (hunspell)
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  (set-frame-font "Menlo 14" nil t))
 
 ;;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
@@ -62,11 +60,10 @@
 ;;;
 
 (require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
- 	     '("gnu" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
 ;;;
@@ -80,6 +77,19 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package diminish)
+(use-package delight)
+
+;;;
+;;; Themes
+;;;
+
+(use-package zenburn-theme)
+(use-package doom-themes)
+(load-theme 'doom-wilmersdorf)
+;(load-theme 'deeper-blue)
+;(load-theme 'zenburn)
+
 ;;;
 ;;; Misc Emacs Packages
 ;;;
@@ -92,10 +102,23 @@
 
 ;;;; which-key
 (use-package which-key
+  :diminish
   :config
   (which-key-setup-side-window-right-bottom) ; either this
   ;; (which-key-setup-minibuffer)            ; or this
   (which-key-mode))
+
+;;;; flyspell (hunspell)
+(use-package flyspell
+  :diminish
+  :hook
+  ((text-mode . flyspell-mode)
+   (prog-mode . flyspell-prog-mode)))
+;(add-hook 'text-mode-hook 'flyspell-mode)
+;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;;;; eldoc
+(use-package eldoc :diminish)
 
 ;;;; iedit
 (use-package iedit)
@@ -105,9 +128,11 @@
   :bind ("M-o" . ace-window))
 
 ;;;; ivy, counsel, swiper
-(use-package ivy)
-(use-package counsel)
+(use-package ivy :diminish)
+(use-package counsel :diminish)
 (use-package swiper)
+;; my configs
+(counsel-mode 1)
 ;; their configs
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -164,7 +189,7 @@
   :config (pdf-tools-install))
 
 ;;;
-;;; Code Editor
+;;; Code Editor (IDE)
 ;;;
 
 ;;;; projectile
@@ -176,18 +201,29 @@
 (setq projectile-completion-system 'ivy)
 (setq projectile-project-search-path '("~/github/")) ; put all your project directories here
 
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-mode +1))
+
 ;;;; search
 (use-package ag)
 (use-package ripgrep)
 (use-package deadgrep)
 (use-package wgrep)
 
+;;;; rainbow
+(use-package rainbow-mode
+  :diminish
+  :hook (prog-mode . rainbow-mode))
+
 ;;;; flycheck
 (use-package flycheck
+  :diminish
   :config (global-flycheck-mode))
 
 ;;;; company
 (use-package company
+  :diminish
   :config
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1)
@@ -195,12 +231,14 @@
 
 ;;;; yasnippet
 (use-package yasnippet
+  :diminish yas-minor-mode
   :config (yas-global-mode 1))
 (use-package yasnippet-snippets)
 
 ;;;; editorconfig
-;;(use-package editorconfig
-;;  :config (editorconfig-mode 1))
+(use-package editorconfig
+  :diminish
+  :config (editorconfig-mode 1))
 
 ;;;; hl-todo
 (use-package hl-todo
@@ -213,8 +251,8 @@
   (centaur-tabs-mode t)
   (centaur-tabs-group-by-projectile-project)
   :bind
-  ("C-<prior>" . centaur-tabs-backward)
-  ("C-<next>" . centaur-tabs-forward)
+  ("C-S-<tab>" . centaur-tabs-backward)
+  ("C-<tab>" . centaur-tabs-forward)
   ("C-c t s" . centaur-tabs-counsel-switch-group)
   ("C-c t p" . centaur-tabs-group-by-projectile-project)
   ("C-c t g" . centaur-tabs-group-buffer-groups))
@@ -248,17 +286,28 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred))
+  :hook
+  ((python-mode . lsp-deferred)
+   ;(java-mode . lsp-deferred)
+   (dart-mode . lsp-deferred)
+   (js-mode . lsp-deferred)
+   (js2-mode . lsp-deferred)
+   (rjsx-mode . lsp-deferred)
+   (typescript-mode . lsp-deferred)
+   (go-mode . lsp-deferred)))
 
-;; company-lsp integrates company mode completion with lsp-mode.
-;; completion-at-point also works out of the box but doesn't support snippets.
-(use-package company-lsp
-  :commands company-lsp)
+(use-package company-lsp :commands company-lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
-;; Optional - provides fancier overlays.
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
+;;;; debugger (dap)
+(use-package dap-mode
+  :disabled
+  :config
+  (dap-mode 1)
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)
+  (tooltip-mode 1))
 
 ;;; Code Modes:
 
@@ -275,22 +324,32 @@
 (use-package yaml-mode)
 
 ;;;; front-end
-(use-package web-mode)
-(use-package js2-mode)
+(use-package web-mode
+  :mode ("\\.html?\\'" . web-mode))
+(use-package js2-mode
+  :mode ("\\.js\\'" . js2-mode))
+(use-package rjsx-mode)
 (use-package typescript-mode)
-(use-package tide
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+(use-package emmet-mode
+  :hook
+  ((sgml-mode . emmet-mode)
+   (web-mode . emmet-mode)
+   (css-mode . emmet-mode))
+  :config
+  (setq emmet-move-cursor-between-quotes t)
+  (setq emmet-expand-jsx-className? t)
+  (setq emmet-self-closing-tag-style " /"))
+
+;; tide
+
 
 ;;;; restclient
 (use-package restclient)
 (use-package company-restclient)
 
 ;;;; python
-(use-package elpy
-  :init (elpy-enable))
+(setq python-indent-offset 4)
+(setq python-shell-interpreter "python3")
 
 ;;;; flutter / dart
 (use-package dart-mode)
@@ -305,9 +364,11 @@
   :config
   (flutter-l10n-flycheck-setup))
 
+;;;; java
+;(use-package lsp-java :after lsp)
+
 ;;;; golang
 (use-package go-mode)
-
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
 (defun lsp-go-install-save-hooks ()
