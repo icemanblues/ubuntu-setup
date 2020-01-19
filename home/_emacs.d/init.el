@@ -43,10 +43,10 @@
 ;;; Font tweaks
 ;; ubuntu linux
 (when (memq window-system '(x))
-  (set-frame-font "Ubuntu Mono 14" nil t))
+  (set-frame-font "Ubuntu Mono 13" nil t))
 ;; macos
 (when (memq window-system '(mac ns))
-  (set-frame-font "Menlo 14" nil t))
+  (set-frame-font "Menlo 13" nil t))
 
 ;;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
@@ -215,6 +215,10 @@
 (use-package rainbow-mode
   :diminish
   :hook (prog-mode . rainbow-mode))
+
+
+;;;; flymake
+(use-package flymake :diminish)
 
 ;;;; flycheck
 (use-package flycheck
