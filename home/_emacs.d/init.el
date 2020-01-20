@@ -9,10 +9,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("dd854be6626a4243375fd290fec71ed4befe90f1186eb5b485a9266011e15b29" "0c9f63c9d90d0d135935392873cd016cc1767638de92841a5b277481f1ec1f4a" default)))
+    ("6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" "423435c7b0e6c0942f16519fa9e17793da940184a50201a4d932eafe4c94c92d" "1897b97f63e91a792e8540c06402f29d5edcbfb0aafd64b1b14270663d6868ee" "e47c0abe03e0484ddadf2ae57d32b0f29f0b2ddfe7ec810bd6d558765d9a6a6c" "b60f08ddc98a95485ec19f046a81d5877b26ab80a67782ea5b91a00ea4f52170" "dd854be6626a4243375fd290fec71ed4befe90f1186eb5b485a9266011e15b29" "0c9f63c9d90d0d135935392873cd016cc1767638de92841a5b277481f1ec1f4a" default)))
  '(package-selected-packages
    (quote
-    (rjsx-mode lsp-clients dap-go dap-java lsp-java dap-python centaur-tabs pdf-tools ripgrep wgrep deadgrep ag flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
+    (doom-modeline rjsx-mode lsp-clients dap-go dap-java lsp-java dap-python centaur-tabs pdf-tools ripgrep wgrep deadgrep ag flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -85,10 +85,23 @@
 ;;;
 
 (use-package zenburn-theme)
-(use-package doom-themes)
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (doom-themes-visual-bell-config))
+
 (load-theme 'doom-wilmersdorf)
-;(load-theme 'deeper-blue)
-;(load-theme 'zenburn)
+;;(load-theme 'doom-outrun-electric)
+;;(load-theme 'doom-one)
+;;(load-theme 'doom-dracula)
+;;(load-theme 'doom-vibrant)
+;;(load-theme 'deeper-blue)
+;;(load-theme 'zenburn)
+
+;; doom-moodline
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode))
 
 ;;;
 ;;; Misc Emacs Packages
