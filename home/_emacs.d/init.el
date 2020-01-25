@@ -1,59 +1,6 @@
-;;;
-;;; Custom:
-;;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("6cbf6003e137485fb3f904e76fb15bc48abc386540f43f54e2a47a9884e679f6" "423435c7b0e6c0942f16519fa9e17793da940184a50201a4d932eafe4c94c92d" "1897b97f63e91a792e8540c06402f29d5edcbfb0aafd64b1b14270663d6868ee" "e47c0abe03e0484ddadf2ae57d32b0f29f0b2ddfe7ec810bd6d558765d9a6a6c" "b60f08ddc98a95485ec19f046a81d5877b26ab80a67782ea5b91a00ea4f52170" "dd854be6626a4243375fd290fec71ed4befe90f1186eb5b485a9266011e15b29" "0c9f63c9d90d0d135935392873cd016cc1767638de92841a5b277481f1ec1f4a" default)))
- '(package-selected-packages
-   (quote
-    (goto-chg rainbow-delimiters doom-modeline rjsx-mode lsp-clients dap-go dap-java lsp-java dap-python centaur-tabs pdf-tools ripgrep wgrep deadgrep ag flutter-l10n-flycheck flutter dart-mode elpy doom-themes zenburn-theme lsp-ui company-lsp lsp-mode treemacs-magit treemacs-icons-dired treemacs-projectile treemacs hl-todo editorconfig nyan-mode company-nginx nginx-mode docker-compose-mode company-go go-mode company-jedi restclient js2-mode tide web-mode yaml-mode markdown-mode yasnippet-snippets yasnippet company flycheck projectile docker magit counsel ivy ace-window org-bullets iedit which-key exec-path-from-shell dockerfile-mode company-restclient use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;;;
-;;; Misc Emacs tweaks
-;;;
-
-;;; UI tweaks
-(column-number-mode t)
-(global-linum-mode 1)
-(show-paren-mode t)
-(tool-bar-mode 0)
-(global-hl-line-mode t)
-(setq inhibit-startup-screen t)
-
-;;; a tab is 4 spaces
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
-
-;;; backup file tweaks
-(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
-
-;;; Font tweaks
-;; ubuntu linux
-(when (memq window-system '(x))
-  (set-frame-font "Ubuntu Mono 12" nil t))
-;; macos
-(when (memq window-system '(mac ns))
-  (set-frame-font "Menlo 12" nil t))
-
-;;; binding tweaks
-(global-set-key [f5] 'revert-buffer)
-;;(global-set-key [f6] 'goto-line)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key [f7] 'compile)
-(global-set-key [f8] 'company-complete)
+;; icemanblues' emacs configurations
+;; add this file to your local ~/emacs.d/init.el
+;; (load-file "path/to/this/init.el")
 
 ;;;
 ;;; MELPA
@@ -67,7 +14,7 @@
 (package-initialize)
 
 ;;;
-;;; Use Package
+;;; USE PACKAGE
 ;;;
 
 (unless (package-installed-p 'use-package)
@@ -81,6 +28,40 @@
 (use-package delight)
 
 ;;;
+;;; EMACS TWEAKS
+;;;
+
+;; UI tweaks
+(column-number-mode t)
+(global-linum-mode 1)
+(show-paren-mode t)
+(tool-bar-mode 0)
+(global-hl-line-mode t)
+(setq inhibit-startup-screen t)
+
+;; a tab is 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
+;; backup file tweaks
+(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+
+;; Font tweaks
+;; ubuntu linux
+(when (memq window-system '(x))
+  (set-frame-font "Ubuntu Mono 12" nil t))
+;; macos
+(when (memq window-system '(mac ns))
+  (set-frame-font "Menlo 12" nil t))
+
+;; binding tweaks
+(global-set-key [f5] 'revert-buffer)
+(global-set-key [f6] 'ivy-resume)
+(global-set-key [f7] 'compile)
+(global-set-key [f8] 'goto-line)
+
+;;;
 ;;; Themes
 ;;;
 
@@ -91,8 +72,8 @@
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (doom-themes-visual-bell-config))
 
-(load-theme 'doom-wilmersdorf)
-;;(load-theme 'doom-outrun-electric)
+;;(load-theme 'doom-wilmersdorf)
+(load-theme 'doom-outrun-electric)
 ;;(load-theme 'doom-one)
 ;;(load-theme 'doom-dracula)
 ;;(load-theme 'doom-vibrant)
@@ -104,16 +85,16 @@
   :hook (after-init . doom-modeline-mode))
 
 ;;;
-;;; Misc Emacs Packages
+;;; MISCELLANEOUS
 ;;;
 
-;;;; exec-path-from-shell
+;; exec-path-from-shell
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;;;; which-key
+;; which-key
 (use-package which-key
   :diminish
   :config
@@ -121,42 +102,40 @@
   ;; (which-key-setup-minibuffer)            ; or this
   (which-key-mode))
 
-;;;; flyspell (hunspell)
+;; flyspell (hunspell)
 (use-package flyspell
   :diminish
   :hook
   ((text-mode . flyspell-mode)
    (prog-mode . flyspell-prog-mode)))
 
-;;;; eldoc
+;; eldoc
 (use-package eldoc :diminish)
 
-;;;; iedit
+;; iedit
 (use-package iedit)
 
-;;;; goto last change
+;; goto last change
 (use-package goto-chg
-  :config
-  (global-set-key (kbd "C-c C-q") 'goto-last-change)
-  (global-set-key (kbd "C-c C-w") 'goto-last-change-reverse))
+  :bind
+  (("C-c C-q" . goto-last-change)
+   ("C-c C-w" . goto-last-change-reverse)))
 
-;;;; ace-windows
+;; ace-windows
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
-;;;; ivy, counsel, swiper
-(use-package ivy :diminish)
-(use-package counsel :diminish)
+;; ivy, counsel, swiper
+(use-package ivy :diminish
+  :config (ivy-mode 1))
+(use-package counsel :diminish
+  :config (counsel-mode 1))
 (use-package swiper)
-;; my configs
-(counsel-mode 1)
-;; their configs
-(ivy-mode 1)
+
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 (setq ivy-display-style 'fancy)
-;; enable this if you want `swiper' to use it
-;; (setq search-default-mode #'char-fold-to-regexp)
+(setq search-default-mode #'char-fold-to-regexp) ; enable this if you want `swiper' to use it
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -168,7 +147,7 @@
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-c k") 'counsel-rg)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
@@ -177,76 +156,76 @@
 ;;; ORG MODE
 ;;;
 
-;;;; org-bullets
-(use-package org-bullets
-  :config (add-hook 'org-mode-hook 'org-bullets-mode))
-
 (setq org-log-done 'time)
 
-;;;; agenda
+;; org-bullets
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
-;;;; capture
-
-;;;; babel
+;; agenda
+;; capture
+;; babel
 
 ;;;
-;;; Utilities
+;;; UTILITIES
 ;;;
 
-;;;; magit
+;; magit
 (use-package magit
   :bind ("C-x g" . magit-status))
 
-;;;; docker
+;; docker
 (use-package docker
   :bind ("C-c d" . docker))
 
-;;;; pdf tools
+;; pdf tools
 (use-package pdf-tools
   :config (pdf-tools-install))
 
+;; kubernetes
+
 ;;;
-;;; Code Editor (IDE)
+;;; CODE EDITOR (IDE)
 ;;;
 
-;;;; projectile
+;; projectile
 (use-package projectile
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
-(setq projectile-completion-system 'ivy)
-(setq projectile-project-search-path '("~/github/")) ; put all your project directories here
+  (projectile-mode +1)
+  (setq projectile-project-search-path '("~/github/")) ; put all your project directories here
+  (setq projectile-completion-system 'ivy))
 
 (use-package counsel-projectile
   :config
   (counsel-projectile-mode +1))
 
-;;;; search
+;; search
 (use-package ag)
 (use-package ripgrep)
 (use-package deadgrep)
 (use-package wgrep)
 
-;;;; rainbow
+;; rainbow
 (use-package rainbow-mode
   :diminish
   :hook (prog-mode . rainbow-mode))
 
-;;;; rainbow delimiters
+;; rainbow delimiters
 (use-package rainbow-delimiters
   :diminish
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;;;; flymake
+;; flymake
 (use-package flymake :diminish)
 
-;;;; flycheck
+;; flycheck
 (use-package flycheck
   :diminish
   :config (global-flycheck-mode))
 
-;;;; company
+;; company
 (use-package company
   :diminish
   :config
@@ -254,22 +233,22 @@
   (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
-;;;; yasnippet
+;; yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
   :config (yas-global-mode 1))
 (use-package yasnippet-snippets)
 
-;;;; editorconfig
+;; editorconfig
 (use-package editorconfig
   :diminish
   :config (editorconfig-mode 1))
 
-;;;; hl-todo
+;; hl-todo
 (use-package hl-todo
   :config (global-hl-todo-mode))
 
-;;;; centaur tabs
+;; centaur tabs
 (use-package centaur-tabs
   :demand
   :config
@@ -282,7 +261,7 @@
   ("C-c t p" . centaur-tabs-group-by-projectile-project)
   ("C-c t g" . centaur-tabs-group-buffer-groups))
 
-;;;; treemacs
+;; treemacs
 (use-package treemacs
   :config
   ;;(treemacs-resize-icons 44) ; uncomment on Hi-DPI display
@@ -309,11 +288,12 @@
 ;;; LSP MODE
 ;;;
 
+;; language server protocol
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :hook
   ((python-mode . lsp-deferred)
-   ;(java-mode . lsp-deferred)
+   ;;(java-mode . lsp-deferred)
    (dart-mode . lsp-deferred)
    (js-mode . lsp-deferred)
    (js2-mode . lsp-deferred)
@@ -325,30 +305,31 @@
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
-;;;; debugger (dap)
+;; debugger (dap)
 (use-package dap-mode
-  :disabled
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
   (tooltip-mode 1))
 
-;;; Code Modes:
+;;;
+;;; CODE MODE
+;;;
 
 (use-package markdown-mode
   :mode
   (("README\\.md\\'" . gfm-mode)
    ("\\.md\\'" . markdown-mode)
    ("\\.markdown\\'" . markdown-mode))
-  :init                               ; must install locally
-  (setq markdown-command "markdown")  ; markdown or grip
+  :init
+  (setq markdown-command "markdown") ; must install locally markdown or grip
   (setq markdown-split-window-direction 'right))
 
 (use-package json-mode)
 (use-package yaml-mode)
 
-;;;; front-end
+;; front-end
 (use-package web-mode
   :mode ("\\.html?\\'" . web-mode))
 (use-package js2-mode
@@ -365,18 +346,17 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
-;; tide
-
-
-;;;; restclient
+;; restclient
 (use-package restclient)
 (use-package company-restclient)
 
-;;;; python
-(setq python-indent-offset 4)
-(setq python-shell-interpreter "python3")
+;; python
+(use-package python-mode
+  :config
+  (setq python-indent-offset 4)
+  (setq python-shell-interpreter "python3"))
 
-;;;; flutter / dart
+;; flutter / dart
 (use-package dart-mode)
 
 (use-package flutter
@@ -389,10 +369,10 @@
   :config
   (flutter-l10n-flycheck-setup))
 
-;;;; java
-;(use-package lsp-java :after lsp)
+;; java
+;;(use-package lsp-java :after lsp :disabled)
 
-;;;; golang
+;; golang
 (use-package go-mode)
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -401,11 +381,11 @@
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
-;;;; docker
+;; docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
 
-;;;; nginx
+;; nginx
 (use-package nginx-mode)
 (use-package company-nginx)
 
@@ -413,5 +393,5 @@
 ;;; Fun:
 ;;;
 
-;;;; nyan-mode
+;; nyan-mode
 (use-package nyan-mode)
