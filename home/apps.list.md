@@ -63,10 +63,6 @@ Steam is Valve's game store and launcher
 
 Steam is available in the ubuntu repo
 
-### Gnome Twitch
-
-player for twitch, full hardware acceleration
-
 ### retroarch
 
 emulator framework
