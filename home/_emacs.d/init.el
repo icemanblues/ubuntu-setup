@@ -183,6 +183,8 @@
   :config (pdf-tools-install))
 
 ;; kubernetes
+(use-package kubernetes
+  :commands (kubernetes-overview))
 
 ;;;
 ;;; CODE EDITOR (IDE)
@@ -328,6 +330,7 @@
 
 (use-package json-mode)
 (use-package yaml-mode)
+(use-package protobuf-mode)
 
 ;; front-end
 (use-package web-mode
@@ -355,6 +358,8 @@
   :config
   (setq python-indent-offset 4)
   (setq python-shell-interpreter "python3"))
+
+(use-package pyvenv)
 
 ;; flutter / dart
 (use-package dart-mode)
