@@ -63,6 +63,10 @@ Steam is Valve's game store and launcher
 
 Steam is available in the ubuntu repo
 
+#### Controller support (steam)
+
+you'll also need to install `steam-devices`
+
 ### retroarch
 
 emulator framework
