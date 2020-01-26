@@ -73,7 +73,7 @@
   (doom-themes-visual-bell-config))
 
 ;;(load-theme 'doom-wilmersdorf)
-(load-theme 'doom-outrun-electric)
+;;(load-theme 'doom-outrun-electric)
 ;;(load-theme 'doom-one)
 ;;(load-theme 'doom-dracula)
 ;;(load-theme 'doom-vibrant)
@@ -193,9 +193,9 @@
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
   (setq projectile-project-search-path '("~/github/")) ; put all your project directories here
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)
+  (projectile-mode +1))
 
 (use-package counsel-projectile
   :config
