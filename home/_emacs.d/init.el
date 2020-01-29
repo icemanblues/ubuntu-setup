@@ -354,10 +354,8 @@
 (use-package company-restclient)
 
 ;; python
-(use-package python-mode
-  :config
-  (setq python-indent-offset 4)
-  (setq python-shell-interpreter "python3"))
+(setq python-indent-offset 4)
+(setq python-shell-interpreter "python3")
 
 (use-package pyvenv)
 
