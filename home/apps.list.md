@@ -2,7 +2,9 @@
 
 These are 3rd party applications that I like to install for my uses
 
-## Utilities
+## Command Line Input
+
+very helpful CLI tools
 
 ### hunspell
 one of the best spell checkers arounds
@@ -23,6 +25,12 @@ static site generator
 
 both are pattern based file searchers
 code search tools
+
+## Utilities
+
+### Virtual Box
+
+run a local VM for whatever purpose
 
 ### imagemagick
 
@@ -56,6 +64,8 @@ It plays everything. Pretty neat support for streaming services too
 
 Excellent software for recording your desktop and screen.
 Can also be used for streaming.
+
+## Gaming
 
 ### Steam
 
