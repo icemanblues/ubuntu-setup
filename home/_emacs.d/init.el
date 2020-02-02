@@ -156,15 +156,41 @@
 ;;; ORG MODE
 ;;;
 
-(setq org-log-done 'time)
-
 ;; org-bullets
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 
+;; log time of time when done
+(setq org-log-done 'time)
+
+;; org-capture
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;; (setq org-capture-templates
+;; '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
+;;    "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+;; ("n" "Note" entry (file+headline "~/Dropbox/orgfiles/notes.org" "Notes")
+;;  "* Note %?\n%T")
+;; ("l" "Link" entry (file+headline "~/Dropbox/orgfiles/links.org" "Links")
+;;  "* %? %^L %^g \n%T" :prepend t)
+;; ("b" "Blog idea" entry (file+headline "~/Dropbox/orgfiles/i.org" "Blog Topics:")
+;;  "* %?\n%T" :prepend t)
+;; ("t" "To Do Item" entry (file+headline "~/Dropbox/orgfiles/i.org" "To Do Items")
+;;  "* %?\n%T" :prepend t)
+;; ("j" "Journal" entry (file+datetree "~/Dropbox/journal.org")
+;;  "* %?\nEntered on %U\n  %i\n  %a")
+;; ("s" "Screencast" entry (file "~/Dropbox/orgfiles/screencastnotes.org")
+;;  "* %?\n%i\n")))
+
 ;; agenda
-;; capture
-;; babel
+;; (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
+;;                              "~/Dropbox/orgfiles/i.org"
+;;                              "~/Dropbox/orgfiles/schedule.org"))
+
+;; (setq org-agenda-custom-commands
+;;       '(("c" "Simple agenda view"
+;;          ((agenda "")
+;;           (alltodo "")))))
 
 ;;;
 ;;; UTILITIES
@@ -358,6 +384,8 @@
 (setq python-shell-interpreter "python3")
 
 (use-package pyvenv)
+
+(use-package ein)
 
 ;; flutter / dart
 (use-package dart-mode)
