@@ -73,7 +73,7 @@ Steam is Valve's game store and launcher
 
 Steam is available in the ubuntu repo
 
-#### Controller support (steam)
+### Controller support (steam)
 
 you'll also need to install `steam-devices`
 
@@ -96,6 +96,11 @@ Follow the instructions here: https://wiki.winehq.org/Ubuntu
 lutris makes installing wine, winecfg, etc simpler and straight-forward for many games and windows applications
 
 Follow the instructions here: https://lutris.net/downloads/
+
+### game hub
+
+This is kinda interesting
+https://tkashkin.tk/projects/gamehub/
 
 ### dxvk
 
