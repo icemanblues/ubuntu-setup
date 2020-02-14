@@ -65,6 +65,13 @@ It plays everything. Pretty neat support for streaming services too
 Excellent software for recording your desktop and screen.
 Can also be used for streaming.
 
+### ckb-next
+
+I use the corsair RGK K70 Vengeance keyboard.
+This is the driver that makes it work on linux, and lets me customize the colors
+
+https://launchpad.net/~tatokis/+archive/ubuntu/ckb-next
+
 ## Gaming
 
 ### Steam
