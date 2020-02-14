@@ -1,6 +1,45 @@
+;; -*- lexical-binding: t; -*-
+
 ;; icemanblues' emacs configurations
 ;; add this file to your local ~/emacs.d/init.el
 ;; (load-file "path/to/this/init.el")
+
+;;;
+;;; Garbage Collection
+;;;
+
+;; no gc during startup
+
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      doom-gc-cons-threshold 16777216 ; 16mb
+      gc-cons-percentage 0.6)
+
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold doom-gc-cons-threshold
+          gc-cons-percentage 0.1)))
+
+;; no gc during minibuffer use
+(defun doom-defer-garbage-collection-h ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun doom-restore-garbage-collection-h ()
+  ;; Defer it so that commands launched immediately after will enjoy the
+  ;; benefits.
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold doom-gc-cons-threshold))))
+
+(add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
+
+;; Unset file-name-handler-alist temporarily
+
+(defvar doom--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq file-name-handler-alist doom--file-name-handler-alist)))
 
 ;;;
 ;;; MELPA

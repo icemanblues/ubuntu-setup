@@ -17,8 +17,9 @@ The urge and need to continuously improve and tinker with emacs will never end.
 * [Eli Barzilay](https://www.barzilay.org/)
 * [Mike Zamaski](https://cestlaz.github.io/stories/emacs/)
 * [Ian Pan](https://github.com/ianpan870102)
-* [/r/emacs](https://emacs.reddit.com) community
-* [emacs stackexchange](https://emacs.stackexchange.com) community
+* [Doom Emacs](https://github.com/hlissner/doom-emacs/blob/665b627b7c07c8d29ec8d334588cecc2ba308248/docs/faq.org#how-does-doom-start-up-so-quickly)
+* [/r/emacs](https://emacs.reddit.com)
+* [emacs stackexchange](https://emacs.stackexchange.com)
 
 ### Research
 
