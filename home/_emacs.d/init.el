@@ -104,7 +104,8 @@
 ;;; Themes
 ;;;
 
-(use-package zenburn-theme)
+;;(use-package zenburn-theme)
+
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
