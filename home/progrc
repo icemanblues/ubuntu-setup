@@ -1,0 +1,33 @@
+### Programming Languages
+### Path configurations
+
+# Python
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+export WORKON_HOME="~/.virtualenv"
+export PATH="/home/roland/.local/bin:$PATH"
+if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
+    source ~/.local/bin/virtualenvwrapper.sh
+fi
+
+# Go
+export GOPATH="/home/roland/go"
+export PATH="/opt/go/current/bin:$GOPATH/bin:$PATH"
+
+# Flutter
+export FLUTTER_HOME="/opt/flutter/current"
+export PATH="$FLUTTER_HOME/bin:$PATH"
+# Dart
+export DART_HOME="$FLUTTER_HOME/bin/cache/dart-sdk"
+export PATH="$DART_HOME/bin:$PATH"
+# Android studio
+export ANDROID_STUDIO_HOME="/opt/android-studio/current"
+export PATH="$ANDROID_STUDIO_HOME/bin:$PATH"
+
+# Java
+export JAVA_HOME="/opt/openjdk/current"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Javascript nvm npm 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
