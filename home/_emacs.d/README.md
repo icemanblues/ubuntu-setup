@@ -20,6 +20,7 @@ The urge and need to continuously improve and tinker with emacs will never end.
 * [Doom Emacs](https://github.com/hlissner/doom-emacs/blob/665b627b7c07c8d29ec8d334588cecc2ba308248/docs/faq.org#how-does-doom-start-up-so-quickly)
 * [/r/emacs](https://emacs.reddit.com)
 * [emacs stackexchange](https://emacs.stackexchange.com)
+* [Mastering emacs](https://www.masteringemacs.org/)
 
 ### Research
 
@@ -49,7 +50,7 @@ I should also look to migrate more functionality to LSP mode
 * javascript/ typescript
 * python
 * java
-  * c/c++
+* c/c++
 
 ### emacs
 
