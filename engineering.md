@@ -15,6 +15,11 @@ Download the binary from their website
 https://golang.org/dl/
 and install it under `/opt/go`
 
+Add the go toolchain to path.
+Add gopath to path
+
+install gopls
+
 ### Python
 
 I normally use the system provided python3.
@@ -42,6 +47,8 @@ sudo pip3 install virtualenvwrapper
 
 If I need to use a version of python that is different from the system provided version.
 I will install it under `/opt/python/` and use a virtulenv to specify it
+
+This should be updated to install pip packages locally via [python3.md](python3.md)
 
 ### Java
 
