@@ -52,7 +52,7 @@ https://github.com/nvm-sh/nvm
 
 Then run the following command to the latest stable version of node
 ```
-nvm install node
+nvm install stable
 ```
 
 ## Code Editors and IDEs

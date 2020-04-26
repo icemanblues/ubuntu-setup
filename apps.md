@@ -31,6 +31,15 @@ a TUI apt package manager
 
 my preferred text editor
 
+#### init.el 
+
+- configure emacs to load the init.el provided
+
+#### emacsclient 
+
+- use systemctl to start the emacs daemon for emacsclient
+- set editor to emacsclient
+
 ### vim
 
 another amazing text editor
