@@ -23,32 +23,21 @@ install gopls
 ### Python
 
 I normally use the system provided python3.
-
 Since this is for ubuntu, I install the apt repo version of the following tools
-
 If you want a version of python that is not yet in the repo, you have to add this PPA
 `sudo add-apt-repository ppa:deadsnakes/ppa`
+python source can also be downloaded and built locally
 
-python source can also be downloaded, configured, and built locally
-I followed the steps here: https://websiteforstudents.com/installing-the-latest-python-3-7-on-ubuntu-16-04-18-04/
+#### Python3 pip requirements
 
-* pip (python2)
-* pip3 (python3)
-* virtualenv (python2)
+The below packages should be installed to the user.
+The user .local/bin should be added to the path
 
-I install `virtualenvwrapper` globally
-There is an argument to installing it locally `--user`
-
-* virtualenvwrapper (python3)
-
-```
-sudo pip3 install virtualenvwrapper
-```
-
-If I need to use a version of python that is different from the system provided version.
-I will install it under `/opt/python/` and use a virtulenv to specify it
-
-This should be updated to install pip packages locally via [python3.md](python3.md)
+* pip3 install --user autopep8
+* pip3 install --user flake8
+* pip3 install --user pylint
+* pip3 install --user pyls
+* pip3 install --user virtualenvwrapper
 
 ### Java
 
@@ -69,32 +58,21 @@ nvm install node
 ## Code Editors and IDEs
 
 * vscode
-  download and install deb
 * emacs
-  use ubuntu repo version
-* intellij ?
-  download and install to a local directory, add to PATH
 
-## Markdown
-
-* markdown
-* grip
-
-## Database clients
-
-* dbeaver
-  download deb
+* intellij
+* android-studio
 
 ## Infrastructure tools
 
-### Docker
+### docker
 
 * docker
 * docker-compose
 
 I install the docker-ce (community edition) as per ubuntu repo
 
-#### Images
+#### images
 Use docker hub to download the images as needed
 
 Popular Images:
