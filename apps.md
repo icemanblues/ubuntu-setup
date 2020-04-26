@@ -77,6 +77,10 @@ code search tool
 
 rg is better than ag
 
+### neofetch 
+
+flashy way to display your system info
+
 ## Utilities
 
 ### gnome-tweaks
