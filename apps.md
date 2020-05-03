@@ -134,6 +134,14 @@ It plays everything. Pretty neat support for streaming services too
 Excellent software for recording your desktop and screen.
 Can also be used for streaming.
 
+### audacity
+
+sound editor
+
+### kdenlive
+
+video editor
+
 ### ckb-next
 
 I use the corsair RGK K70 Vengeance keyboard.
