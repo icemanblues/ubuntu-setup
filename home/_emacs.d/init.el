@@ -414,7 +414,10 @@
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
-  (tooltip-mode 1))
+  (tooltip-mode 1)
+  (dap-ui-controls-mode 1)
+  :hook
+  dap-stopped-hook . (lambda (arg) (call-interactively #'dap-hydra)))
 
 ;;;
 ;;; CODE MODE
