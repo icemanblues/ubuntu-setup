@@ -436,6 +436,7 @@
 ;; python
 (setq python-indent-offset 4)
 (setq python-shell-interpreter "python3")
+(require 'dap-python)
 
 (use-package pyvenv)
 
