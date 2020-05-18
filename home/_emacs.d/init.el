@@ -296,7 +296,7 @@
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   ;; put all your project directories here
-  (setq projectile-project-search-path '("~/code/" "~/github/" "~/gitlab"))
+  (setq projectile-project-search-path '("~/code/"))
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
 
