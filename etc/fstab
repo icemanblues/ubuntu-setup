@@ -2,5 +2,7 @@
 tmpfs /tmp tmpfs defaults,noatime,mode=1777 0 0
 ### mount my nfs
 192.168.1.105:/mnt/HD_a2 /media/nas nfs rw,hard,intr 0 0
+192.168.1.105:/mnt/HD_a2/games/roms /home/roland/retroarch/roms nfs rw,hard,intr 0 0
+192.168.1.105:/mnt/HD_a2/games/system /home/roland/retroarch/systems nfs rw,hard,intr 0 0
 ### mount NTFS for additional storage
 UUID=3A8E31545F559394 /media/WD2TBHDD ntfs defaults,nls=utf8,umask=000,dmask=027,fmask=137,uid=1000,gid=1000,windows_names 0 0
