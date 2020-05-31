@@ -163,10 +163,19 @@ you'll also need to install `steam-devices`
 
 ### retroarch
 
-emulator framework
+emulator front end framework
+
+#### ubuntu ppa
 
 Find their ubuntu ppa and add it according to their instructions
 https://www.retroarch.com/index.php?page=linux-instructions
+
+#### snap 
+
+install the snap
+install cores 
+mount roms (nfs) to home directory
+copy bios into snap config directory under system
 
 ### wine
 
