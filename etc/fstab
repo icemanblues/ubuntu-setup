@@ -1,8 +1,19 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sdb1 during installation
+UUID=bc9a700d-42b7-466e-baa4-87d59767931e /               ext4    errors=remount-ro 0       1
+# /home was on /dev/sdb5 during installation
+UUID=d1970425-eba6-4478-8dfc-7c530d804052 /home           ext4    defaults        0       2
+/swapfile                                 none            swap    sw              0       0
 ### /tmp to memory
 tmpfs /tmp tmpfs defaults,noatime,mode=1777 0 0
 ### mount my nfs
 192.168.1.105:/mnt/HD_a2 /media/nas nfs rw,hard,intr 0 0
 192.168.1.105:/mnt/HD_a2/games/roms /home/roland/retroarch/roms nfs rw,hard,intr 0 0
-192.168.1.105:/mnt/HD_a2/games/system /home/roland/retroarch/systems nfs rw,hard,intr 0 0
 ### mount NTFS for additional storage
-UUID=3A8E31545F559394 /media/WD2TBHDD ntfs defaults,nls=utf8,umask=000,dmask=027,fmask=137,uid=1000,gid=1000,windows_names 0 0
+UUID=3A8E31545F559394 /media/WD2TBHDD ntfs defaults,nls=utf8,umask=000,dmask=0007,fmask=0177,uid=1000,gid=1000,windows_names 0 0
