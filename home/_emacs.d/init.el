@@ -1,8 +1,20 @@
-;; -*- lexical-binding: t; -*-
+;; init.el --- icemanblues's emacs configurations         -*- lexical-binding: t; -*-
 
-;; icemanblues' emacs configurations
+;;; Commentary:
+
 ;; add this file to your local ~/emacs.d/init.el
 ;; (load-file "path/to/this/init.el")
+
+;; add one of the below to add the theme to your ~/emacs.d/init.el
+;; (load-theme 'doom-wilmersdorf)
+;; (load-theme 'doom-outrun-electric)
+;; (load-theme 'doom-one)
+;; (load-theme 'doom-dracula)
+;; (load-theme 'doom-vibrant)
+;; (load-theme 'deeper-blue)
+;; (load-theme 'zenburn)
+
+;;; Code:
 
 ;;;
 ;;; Garbage Collection
@@ -92,7 +104,7 @@
   (set-frame-font "Ubuntu Mono 12" nil t))
 ;; macos
 (when (memq window-system '(mac ns))
-  (set-frame-font "Menlo 12" nil t))
+  (set-frame-font "Menlo 14" nil t))
 
 ;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
@@ -111,14 +123,6 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (doom-themes-visual-bell-config))
-
-;;(load-theme 'doom-wilmersdorf)
-;;(load-theme 'doom-outrun-electric)
-;;(load-theme 'doom-one)
-;;(load-theme 'doom-dracula)
-;;(load-theme 'doom-vibrant)
-;;(load-theme 'deeper-blue)
-;;(load-theme 'zenburn)
 
 ;; doom-moodline
 (use-package doom-modeline
@@ -393,10 +397,18 @@
 
 ;; language server protocol
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "s-l")
+  :config
+  (lsp-modeline-diagnostics-mode)
+  (lsp-modeline-code-actions-mode)
+  (lsp-modeline-workspace-status-mode)
+  (lsp-headerline-breadcrumb-mode)
+  :commands
+  (lsp lsp-deferred)
   :hook
   ((python-mode . lsp-deferred)
-   ;;(java-mode . lsp-deferred)
    (dart-mode . lsp-deferred)
    (js-mode . lsp-deferred)
    (js2-mode . lsp-deferred)
@@ -404,9 +416,9 @@
    (typescript-mode . lsp-deferred)
    (go-mode . lsp-deferred)))
 
-(use-package company-lsp :commands company-lsp)
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 ;; debugger (dap)
 (use-package dap-mode
@@ -460,10 +472,16 @@
 ;; python
 (setq python-indent-offset 4)
 (setq python-shell-interpreter "python3")
+
+(use-package lsp-pyright
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-pyright)
+                   (lsp-deferred))))
+
 (require 'dap-python)
 
 (use-package pyvenv)
-
 (use-package ein)
 
 ;; flutter / dart
@@ -483,17 +501,20 @@
 ;;(use-package lsp-java :after lsp :disabled)
 
 ;; golang
-(use-package go-mode)
-;; Set up before-save hooks to format buffer and add/delete imports.
-;; Make sure you don't have other gofmt/goimports hooks enabled.
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+(use-package go-mode
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  ;; Make sure you don't have other gofmt/goimports hooks enabled.
+  :hook
+  (go-mode . (lambda ()
+               (add-hook 'before-save-hook #'lsp-format-buffer t t)
+               (add-hook 'before-save-hook #'lsp-organize-imports t t))))
+
 
 ;; docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
+(use-package lsp-docker)
 
 ;; nginx
 (use-package nginx-mode)
