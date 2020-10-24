@@ -169,6 +169,10 @@
 (use-package ace-window
   :bind ("M-o" . ace-window))
 
+;; golden-ratio
+(use-package golden-ratio
+  :config (golden-ratio-mode 1))
+
 ;; ivy, counsel, swiper
 (use-package ivy :diminish
   :config (ivy-mode 1))
