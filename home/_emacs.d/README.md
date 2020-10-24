@@ -45,13 +45,6 @@ These packages are ones that I want to learn more about and to add them to my wo
 * rainbow-mode
 * rainbow-delimiters
 
-I should also look to migrate more functionality to LSP mode
-
-* javascript/ typescript
-* python
-* java
-* c/c++
-
 ### emacs
 
 * use-package
@@ -105,9 +98,22 @@ I should also look to migrate more functionality to LSP mode
 
 * restclient.el
 
-### Python
+### LSP mode
 
-* elpy
+I should also look to migrate more functionality to LSP mode
+
+* javascript/ typescript
+* python
+* java
+* c/c++
+
+Below are language servers that need to be installed
+```
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+npm install typescript
+npm install typescript-language-server
+npm install pyright
+```
 
 ### Communication
 

@@ -58,6 +58,13 @@ Then run the following command to the latest stable version of node
 nvm install stable
 ```
 
+Then use npm to install these must haves
+
+* typescript
+* pyright
+* typescript-language-server
+
+
 ## Code Editors and IDEs
 
 * vscode
