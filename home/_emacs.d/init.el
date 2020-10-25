@@ -389,6 +389,7 @@
 
 ;; treemacs
 (use-package treemacs
+  :after golden-ratio
   :config
   ;;(treemacs-resize-icons 44) ; uncomment on Hi-DPI display
   (treemacs-follow-mode t)
