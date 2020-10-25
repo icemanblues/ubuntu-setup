@@ -5,14 +5,19 @@
 ;; add this file to your local ~/emacs.d/init.el
 ;; (load-file "path/to/this/init.el")
 
+;; On your first load, you'll need to run this manually once
+;; M-x all-the-icons-install-fonts
+
 ;; add one of the below to add the theme to your ~/emacs.d/init.el
-;; (load-theme 'doom-wilmersdorf)
 ;; (load-theme 'doom-outrun-electric)
+;; (load-theme 'doom-laserwave)
 ;; (load-theme 'doom-one)
-;; (load-theme 'doom-dracula)
+;; (load-theme 'doom-acario-dark)
 ;; (load-theme 'doom-vibrant)
-;; (load-theme 'deeper-blue)
+;; (load-theme 'doom-wilmersdorf)
 ;; (load-theme 'zenburn)
+;; (load-theme 'deeper-blue)
+
 
 ;;; Code:
 
@@ -172,6 +177,14 @@
 ;; golden-ratio
 (use-package golden-ratio
   :config (golden-ratio-mode 1))
+
+;; all the icons
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+(use-package all-the-icons-ivy
+  :after ivy
+  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
 
 ;; ivy, counsel, swiper
 (use-package ivy :diminish
@@ -361,6 +374,8 @@
 
 ;; centaur tabs
 (use-package centaur-tabs
+  :init
+  (setq centaur-tabs-set-icons t)
   :demand
   :config
   (centaur-tabs-mode t)
@@ -389,7 +404,7 @@
         ("C-x t M-t" . treemacs-find-tag)))
 (use-package treemacs-projectile
   :after treemacs projectile)
-(use-package treemacs-icons-dired
+(use-package treemacs-icons-dired :disabled
   :after treemacs dired
   :config (treemacs-icons-dired-mode))
 (use-package treemacs-magit
