@@ -2,21 +2,21 @@
 
 ;;; Commentary:
 
-;; add this file to your local ~/emacs.d/init.el
+;; add this line to your top of your local ~/emacs.d/init.el
 ;; (load-file "path/to/this/init.el")
 
 ;; On your first load, you'll need to run this manually once
 ;; M-x all-the-icons-install-fonts
 
 ;; add one of the below to add the theme to your ~/emacs.d/init.el
-;; (load-theme 'doom-outrun-electric)
-;; (load-theme 'doom-laserwave)
-;; (load-theme 'doom-one)
-;; (load-theme 'doom-acario-dark)
-;; (load-theme 'doom-vibrant)
-;; (load-theme 'doom-wilmersdorf)
-;; (load-theme 'zenburn)
-;; (load-theme 'deeper-blue)
+;; (load-theme 'doom-outrun-electric t)
+;; (load-theme 'doom-laserwave t)
+;; (load-theme 'doom-one t)
+;; (load-theme 'doom-acario-dark t)
+;; (load-theme 'doom-vibrant t)
+;; (load-theme 'doom-wilmersdorf t)
+;; (load-theme 'zenburn t)
+;; (load-theme 'deeper-blue t)
 
 
 ;;; Code:
@@ -121,8 +121,6 @@
 ;;; Themes
 ;;;
 
-;;(use-package zenburn-theme)
-
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -226,12 +224,12 @@
 (use-package ivy-posframe
   :init
   ;; display at `ivy-posframe-style'
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-left)))
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-bottom-left)))
-  ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
   :config (ivy-posframe-mode 1))
 
 ;;;
@@ -341,6 +339,10 @@
   :diminish
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; highlight-parentheses
+(use-package highlight-parentheses
+  :config (highlight-parentheses-mode 1))
+
 ;; flymake
 (use-package flymake :diminish)
 
@@ -405,9 +407,6 @@
         ("C-x t M-t" . treemacs-find-tag)))
 (use-package treemacs-projectile
   :after treemacs projectile)
-(use-package treemacs-icons-dired :disabled
-  :after treemacs dired
-  :config (treemacs-icons-dired-mode))
 (use-package treemacs-magit
   :after treemacs magit)
 
@@ -518,7 +517,7 @@
   (flutter-l10n-flycheck-setup))
 
 ;; java
-;;(use-package lsp-java :after lsp :disabled)
+;;(use-package lsp-java :after lsp)
 
 ;; golang
 
