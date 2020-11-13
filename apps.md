@@ -246,4 +246,4 @@ There is a snap as well, but I prefer deb+apt solutions
 
 Follow the steps here to setup your local environment.
 
-Please read [Engineering](../engineering.md)
+Please read [Engineering](engineering.md)
