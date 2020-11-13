@@ -484,6 +484,8 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
+(require `dap-node)
+
 ;; restclient
 (use-package restclient)
 (use-package company-restclient)
@@ -518,6 +520,7 @@
 
 ;; java
 ;;(use-package lsp-java :after lsp)
+;;(require `dap-java)
 
 ;; golang
 
@@ -529,6 +532,7 @@
                (add-hook 'before-save-hook #'lsp-format-buffer t t)
                (add-hook 'before-save-hook #'lsp-organize-imports t t))))
 
+(require `dap-go)
 
 ;; docker
 (use-package dockerfile-mode)
