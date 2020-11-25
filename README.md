@@ -20,8 +20,12 @@ Very similar to the `gitops` philosophy of configuration management
 
 If I download some binaries (software) and its a tarball. Then I'll extract it to the `/opt` directory.
 
-* `packages.list`  
+* `packages.list`
+
 list of software packages to download, extract, and add to the appropriate PATH variables
+
+Some people prefer to use `/usr/local` directory for these binaries. In some cases, maybe
+using linux brew or finding the appropriate ubuntu ppa makes sense.
 
 ### HOME
 
