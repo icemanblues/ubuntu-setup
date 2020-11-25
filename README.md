@@ -2,7 +2,7 @@
 
 Simple configurations for post Ubuntu installation
 
-Currently specific for 18.04 LTS
+Currently specific for 20.04 LTS
 
 ## XX Things to do After Installing Ubuntu
 
