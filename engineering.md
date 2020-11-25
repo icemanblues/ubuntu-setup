@@ -19,6 +19,7 @@ Add the go toolchain to path.
 Add gopath to path
 
 install gopls
+install dlv
 
 ### Python
 
@@ -34,12 +35,8 @@ The below packages should be installed to the user.
 The user .local/bin should be added to the path
 
 ```
-pip3 install --user autopep8
-pip3 install --user flake8
-pip3 install --user pylint
 pip3 install --user python-language-server
 pip3 install --user ptvsd
-pip3 install --user virtualenvwrapper
 ```
 
 ### Java
@@ -58,12 +55,11 @@ Then run the following command to the latest stable version of node
 nvm install stable
 ```
 
-Then use npm to install these must haves
+Then use npm to globally install these must haves
 
 * typescript
 * pyright
 * typescript-language-server
-
 
 ## Code Editors and IDEs
 
