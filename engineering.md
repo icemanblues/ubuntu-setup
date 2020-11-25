@@ -21,6 +21,11 @@ Add gopath to path
 install gopls
 install dlv
 
+```
+go get golang.org/x/tools/gopls@latest
+go get github.com/go-delve/delve/cmd/dlv
+```
+
 ### Python
 
 I normally use the system provided python3.
