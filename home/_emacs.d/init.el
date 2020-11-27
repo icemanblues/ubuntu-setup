@@ -433,6 +433,7 @@
    (js2-mode . lsp-deferred)
    (rjsx-mode . lsp-deferred)
    (typescript-mode . lsp-deferred)
+   (rust-mode . lsp-deferred)
    (go-mode . lsp-deferred)))
 
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -465,6 +466,7 @@
 
 (use-package json-mode)
 (use-package yaml-mode)
+(use-package toml-mode)
 (use-package protobuf-mode)
 
 ;; front-end
@@ -533,6 +535,16 @@
                (add-hook 'before-save-hook #'lsp-organize-imports t t))))
 
 (require `dap-go)
+
+;; rustlang
+
+(use-package rust-mode
+  :hook
+  (rust-mode . (lambda ()
+                 (add-hook `before-save-hook #'lsp-format-buffer t t))))
+
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
 
 ;; docker
 (use-package dockerfile-mode)

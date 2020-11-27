@@ -26,6 +26,18 @@ go get golang.org/x/tools/gopls@latest
 go get github.com/go-delve/delve/cmd/dlv
 ```
 
+### Rust 
+
+Download and install `rustup`
+
+confirm rustc, cargo, rustfmt
+
+install rls rust-analysis rust-src
+
+```
+rustup component add rls rust-analysis rust-src rustfmt
+```
+
 ### Python
 
 I normally use the system provided python3.
