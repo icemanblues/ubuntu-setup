@@ -5,6 +5,7 @@ Software and tools that I install for my engineering tasks
 ## Programming Languages
 
 * Go
+* Rust
 * Python
 * Java
 * Javascript (node)
@@ -36,6 +37,18 @@ install rls rust-analysis rust-src
 
 ```
 rustup component add rls rust-analysis rust-src rustfmt
+```
+
+
+#### Rust Analyzer 
+
+This is a different language server than rls. Many consider it better.
+
+Follow these steps to install it. Rustup doesn't support it at this time.
+However, it will be added to rustup in the near future
+
+```
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.local/bin/rust-analyzer
 ```
 
 ### Python

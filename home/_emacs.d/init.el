@@ -546,6 +546,11 @@
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode))
 
+(use-package flycheck-rust
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 ;; docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
