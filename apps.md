@@ -112,6 +112,12 @@ Peek is a simple screen recorder to generate gifs
 Install the ubuntu apt-repo as per:
 https://github.com/phw/peek#installation
 
+### screenkey
+
+Screenkey is a simple way to cast which keys you are pressing
+
+https://www.thregr.org/~wavexx/software/screenkey/
+
 ### gimp
 
 image manipulation (kinda like photoshop)
