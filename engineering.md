@@ -69,6 +69,15 @@ pip3 install --user python-language-server
 pip3 install --user ptvsd
 ```
 
+These packages are very helpful development tools. They provide static analysis for python.
+
+```
+pip3 install --user mypy
+pip3 install --user autopep8
+pip3 install --user pylint
+pip3 install --user flake8
+```
+
 ### Java
 
 I download the openjdk from the website and install it to `/opt/java`
