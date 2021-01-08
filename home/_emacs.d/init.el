@@ -173,8 +173,8 @@
   :bind ("M-o" . ace-window))
 
 ;; golden-ratio
-(use-package golden-ratio
-  :config (golden-ratio-mode 1))
+;;(use-package golden-ratio
+;;  :config (golden-ratio-mode 1))
 
 ;; all the icons
 (use-package all-the-icons)
