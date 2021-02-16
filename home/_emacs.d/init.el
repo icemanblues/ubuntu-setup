@@ -325,16 +325,13 @@
   (setq projectile-project-search-path '("~/code/"))
   (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-completion-system 'ivy)
-  ;;:bind ("C-c p" . projectile-command-map)
-  :bind (:map projectile-mode-map ("C-c p" . #'projectile-command-map))
+  :bind-keymap ("C-c p" . projectile-command-map)
   :config
-  ;;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
 (use-package counsel-projectile
   :after projectile
-  :config
-  (counsel-projectile-mode +1))
+  :config (counsel-projectile-mode +1))
 
 ;; search
 (use-package ag)
