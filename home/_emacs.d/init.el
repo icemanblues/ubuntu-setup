@@ -18,6 +18,12 @@
 ;; (load-theme 'zenburn t)
 ;; (load-theme 'deeper-blue t)
 
+;; copy this into your local init.el if you are on macos
+;; exec-path-from-shell
+;;(when (memq window-system '(mac ns x))
+;;  (use-package exec-path-from-shell
+;;    :config
+;;    (exec-path-from-shell-initialize)))
 
 ;;; Code:
 
@@ -62,6 +68,7 @@
 ;;; MELPA
 ;;;
 
+(setq package-quickstart t)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
@@ -77,7 +84,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 (setq use-package-always-ensure t)
 
 (use-package diminish)
@@ -86,6 +94,10 @@
 ;;;
 ;;; EMACS TWEAKS
 ;;;
+
+;; scratch buffer
+(setq initial-major-mode 'fundamental-mode)
+(setq initial-scratch-message nil)
 
 ;; UI tweaks
 (column-number-mode t)
@@ -135,12 +147,6 @@
 ;;; MISCELLANEOUS
 ;;;
 
-;; exec-path-from-shell
-(use-package exec-path-from-shell
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
 ;; which-key
 (use-package which-key
   :diminish
@@ -171,6 +177,9 @@
 ;; ace-windows
 (use-package ace-window
   :bind ("M-o" . ace-window))
+
+;; esup
+(use-package esup)
 
 ;; golden-ratio
 ;;(use-package golden-ratio
@@ -285,8 +294,8 @@
   :bind ("C-c d" . docker))
 
 ;; pdf tools
-(use-package pdf-tools
-  :config (pdf-tools-install))
+;;(use-package pdf-tools
+;;  :config (pdf-tools-install))
 
 ;; kubernetes
 (use-package kubernetes
@@ -311,15 +320,19 @@
 
 ;; projectile
 (use-package projectile
-  :config
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  :init
   ;; put all your project directories here
   (setq projectile-project-search-path '("~/code/"))
+  (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-completion-system 'ivy)
+  ;;:bind ("C-c p" . projectile-command-map)
+  :bind (:map projectile-mode-map ("C-c p" . #'projectile-command-map))
+  :config
+  ;;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
 (use-package counsel-projectile
+  :after projectile
   :config
   (counsel-projectile-mode +1))
 
@@ -362,8 +375,9 @@
 ;; yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
-  :config (yas-global-mode 1))
-(use-package yasnippet-snippets)
+  :hook (prog-mode . yas-global-mode))
+(use-package yasnippet-snippets
+  :after yasnippet)
 
 ;; editorconfig
 (use-package editorconfig
@@ -391,7 +405,6 @@
 
 ;; treemacs
 (use-package treemacs
-  :after golden-ratio
   :config
   ;;(treemacs-resize-icons 44) ; uncomment on Hi-DPI display
   (treemacs-follow-mode t)
@@ -417,8 +430,8 @@
 ;; language server protocol
 (use-package lsp-mode
   :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "s-l")
+  ;; set prefix for lsp-command-keymap (few alternatives - "s-l", "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-modeline-diagnostics-mode)
   (lsp-modeline-code-actions-mode)
@@ -442,6 +455,7 @@
 
 ;; debugger (dap)
 (use-package dap-mode
+  :after lsp-mode
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
@@ -486,7 +500,8 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
-(require `dap-node)
+;; need to make this a hook on dap-mode
+;;(require `dap-node)
 
 ;; restclient
 (use-package restclient)
