@@ -31,6 +31,9 @@ a TUI apt package manager
 
 my preferred text editor
 
+#### ubuntu ppa
+ppa:kelleyk/emacs
+
 #### init.el 
 
 - configure emacs to load the init.el provided
