@@ -18,13 +18,6 @@
 ;; (load-theme 'zenburn t)
 ;; (load-theme 'deeper-blue t)
 
-;; copy this into your local init.el if you are on macos
-;; exec-path-from-shell
-;;(when (memq window-system '(mac ns x))
-;;  (use-package exec-path-from-shell
-;;    :config
-;;    (exec-path-from-shell-initialize)))
-
 ;;; Code:
 
 ;;;
@@ -122,6 +115,12 @@
 ;; macos
 (when (memq window-system '(mac ns))
   (set-frame-font "Menlo 14" nil t))
+
+;; exec-path-from-shell
+(use-package exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize)))
 
 ;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
@@ -450,17 +449,31 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
+(use-package lsp-pyright
+  :after lsp-mode
+  :hook (python-mode . (lambda () (require 'lsp-pyright) (lsp-deferred))))
+
+(use-package lsp-docker
+  :after lsp-mode)
+
+;;(use-package lsp-java :after lsp-mode)
+
 ;; debugger (dap)
 (use-package dap-mode
   :after lsp-mode
+  :commands dap-debug
   :config
   (dap-mode 1)
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
   (tooltip-mode 1)
   (dap-ui-controls-mode 1)
+  (require 'dap-python)
+  (require 'dap-node)
+  (require 'dap-go)
+  ;;(require 'dap-java)
   :hook
-  dap-stopped-hook . (lambda (arg) (call-interactively #'dap-hydra)))
+  (dap-stopped-hook . (lambda (arg) (call-interactively #'dap-hydra))))
 
 ;;;
 ;;; CODE MODE
@@ -497,9 +510,6 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
-;; need to make this a hook on dap-mode
-;;(require `dap-node)
-
 ;; restclient
 (use-package restclient)
 (use-package company-restclient)
@@ -507,14 +517,6 @@
 ;; python
 (setq python-indent-offset 4)
 (setq python-shell-interpreter "python3")
-
-(use-package lsp-pyright
-  :hook
-  (python-mode . (lambda ()
-                   (require 'lsp-pyright)
-                   (lsp-deferred))))
-
-(require 'dap-python)
 
 (use-package pyvenv)
 (use-package ein)
@@ -532,10 +534,6 @@
   :config
   (flutter-l10n-flycheck-setup))
 
-;; java
-;;(use-package lsp-java :after lsp)
-;;(require `dap-java)
-
 ;; golang
 
 (use-package go-mode
@@ -545,8 +543,6 @@
   (go-mode . (lambda ()
                (add-hook 'before-save-hook #'lsp-format-buffer t t)
                (add-hook 'before-save-hook #'lsp-organize-imports t t))))
-
-(require `dap-go)
 
 ;; rustlang
 
@@ -566,7 +562,6 @@
 ;; docker
 (use-package dockerfile-mode)
 (use-package docker-compose-mode)
-(use-package lsp-docker)
 
 ;; nginx
 (use-package nginx-mode)
