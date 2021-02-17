@@ -97,8 +97,10 @@ nvm install stable
 Then use npm to globally install these must haves
 
 * typescript
+
 * pyright
 * typescript-language-server
+* dockerfile-language-server-nodejs
 
 ## Code Editors and IDEs
 
