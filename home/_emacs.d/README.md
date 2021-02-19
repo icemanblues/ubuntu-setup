@@ -28,47 +28,45 @@ These packages are ones that I want to learn more about and to add them to my wo
 
 * pdf-tools
 
-* emmet-mode
-
-* ivy-posframe
 * ivy-rich
-* all-the-icons
-* dimish
 
 * prescient
 * ivy-prescient
 * company-prescient
-
-* goto-last-change
-* goto-chg
-
-* rainbow-mode
-* rainbow-delimiters
 
 ### emacs
 
 * use-package
 * which-key
 * ace-window
-* iedit
 * org-bullets
+
+* iedit
+* goto-chg
+
 * flyspell
+* rainbow-mode
+* rainbow-delimiters
+
+* all-the-icons
+* dimish
 
 * ivy
 * counsel
 * swiper
 
+* posframe
+* ivy-posframe
+
 * ag
 * ripgrep
 * deadgrep
-
-* treemacs
-* centaur tabs
 
 ### Engineering Utilies
 
 * magit
 * docker
+* kubernetes
 
 ### Programming modes
 
@@ -80,8 +78,9 @@ These packages are ones that I want to learn more about and to add them to my wo
 * json-mode
 * docker-mode
 * web-mode
-* tide
 * js2-mode
+* emmet-mode
+* restclient.el
 
 ### IDE functionality
 
@@ -92,34 +91,34 @@ These packages are ones that I want to learn more about and to add them to my wo
 * flycheck
 * company
 * projectile
+* treemacs
+* centaur tabs
 
 * yasnippet
   * yasnippet-snippets 
 
-* restclient.el
-
 ### LSP mode
-
-I should also look to migrate more functionality to LSP mode
-
-* javascript/ typescript
-* python
-* java
-* c/c++
 
 Below are language servers that need to be installed
 ```
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
-npm install typescript
-npm install typescript-language-server
-npm install pyright
+npm install -g typescript
+npm install -g typescript-language-server
+npm install -g pyright
 ```
+
+I should also look to migrate more functionality to LSP mode
+
+* java
+* c/c++
+
 
 ### Communication
 
 * gnus
 * wanderlust
 * slack
+* stackoverflow
 * twittering-mode
 
 ### Fun
