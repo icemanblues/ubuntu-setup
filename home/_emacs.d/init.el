@@ -52,7 +52,6 @@
 
 (defvar doom--file-name-handler-alist file-name-handler-alist)
 (setq file-name-handler-alist nil)
-
 (add-hook 'emacs-startup-hook
   (lambda ()
     (setq file-name-handler-alist doom--file-name-handler-alist)))
@@ -118,9 +117,9 @@
 
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
+  :if (memq window-system '(mac ns x))
   :config
-  (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize)))
+  (exec-path-from-shell-initialize))
 
 ;; binding tweaks
 (global-set-key [f5] 'revert-buffer)
@@ -145,6 +144,9 @@
 ;;;
 ;;; MISCELLANEOUS
 ;;;
+
+;; esup
+(use-package esup)
 
 ;; which-key
 (use-package which-key
@@ -176,9 +178,6 @@
 ;; ace-windows
 (use-package ace-window
   :bind ("M-o" . ace-window))
-
-;; esup
-(use-package esup)
 
 ;; golden-ratio
 ;;(use-package golden-ratio
@@ -223,13 +222,15 @@
 (use-package posframe)
 
 (use-package which-key-posframe
+  :after posframe
   :config (which-key-posframe-mode))
 
 (use-package flycheck-posframe
-  :after flycheck
+  :after posframe flycheck
   :config (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 (use-package ivy-posframe
+  :after ivy posframe
   :init
   ;; display at `ivy-posframe-style'
   ;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
@@ -335,8 +336,8 @@
 ;; search
 (use-package ag)
 (use-package ripgrep)
-(use-package deadgrep)
-(use-package wgrep)
+;;(use-package deadgrep)
+;;(use-package wgrep)
 
 ;; rainbow
 (use-package rainbow-mode
@@ -372,6 +373,7 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :hook (prog-mode . yas-global-mode))
+
 (use-package yasnippet-snippets
   :after yasnippet)
 
@@ -386,9 +388,9 @@
 
 ;; centaur tabs
 (use-package centaur-tabs
+  :demand
   :init
   (setq centaur-tabs-set-icons t)
-  :demand
   :config
   (centaur-tabs-mode t)
   (centaur-tabs-group-by-projectile-project)
@@ -414,8 +416,10 @@
         ("C-x t B"   . treemacs-bookmark)
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
+
 (use-package treemacs-projectile
   :after treemacs projectile)
+
 (use-package treemacs-magit
   :after treemacs magit)
 
@@ -445,9 +449,9 @@
    (rust-mode . lsp-deferred)
    (go-mode . lsp-deferred)))
 
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-ui :after lsp-mode)
+(use-package lsp-treemacs :after lsp-mode treemacs)
+(use-package lsp-ivy :after lsp-mode ivy)
 
 (use-package lsp-pyright
   :after lsp-mode
@@ -489,17 +493,25 @@
   (setq markdown-split-window-direction 'right))
 
 (use-package json-mode)
+  
 (use-package yaml-mode)
+  
 (use-package toml-mode)
+  
 (use-package protobuf-mode)
+
+;; javascript typescript
+(use-package typescript-mode)
+
+(use-package js2-mode
+  :mode ("\\.js\\'" . js2-mode))
+
+(use-package rjsx-mode)
 
 ;; front-end
 (use-package web-mode
   :mode ("\\.html?\\'" . web-mode))
-(use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode))
-(use-package rjsx-mode)
-(use-package typescript-mode)
+
 (use-package emmet-mode
   :hook
   ((sgml-mode . emmet-mode)
@@ -510,15 +522,12 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
-;; restclient
-(use-package restclient)
-(use-package company-restclient)
-
 ;; python
 (setq python-indent-offset 4)
 (setq python-shell-interpreter "python3")
 
 (use-package pyvenv)
+
 (use-package ein)
 
 ;; flutter / dart
@@ -566,6 +575,10 @@
 ;; nginx
 (use-package nginx-mode)
 (use-package company-nginx)
+
+;; restclient
+(use-package restclient)
+(use-package company-restclient)
 
 ;;;
 ;;; Fun:
