@@ -159,6 +159,7 @@
 ;; flyspell (hunspell)
 (use-package flyspell
   :diminish
+  :init (setq ispell-program-name "hunspell")
   :hook
   ((text-mode . flyspell-mode)
    (prog-mode . flyspell-prog-mode)))
