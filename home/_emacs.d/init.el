@@ -88,7 +88,7 @@
 ;;;
 
 ;; scratch buffer
-(setq initial-major-mode 'fundamental-mode)
+(setq initial-major-mode 'org-mode)
 (setq initial-scratch-message nil)
 
 ;; UI tweaks
