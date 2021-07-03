@@ -424,6 +424,12 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
+(use-package minimap
+  :init
+  (setq minimap-automatically-delete-window 't)
+  (setq minimap-window-location 'right))
+  ;; :config (minimap-mode 1))
+
 ;;;
 ;;; LSP MODE
 ;;;
