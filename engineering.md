@@ -65,11 +65,12 @@ The below packages should be installed to the user.
 The user .local/bin should be added to the path
 
 ```
-pip3 install --user python-language-server
+pip3 install --user python-lsp-server
+pip3 install --user mypy-ls
 pip3 install --user ptvsd
 ```
 
-These packages are very helpful development tools. They provide static analysis for python.
+Optional: These packages are very helpful development tools. They provide static analysis for python.
 
 ```
 pip3 install --user mypy

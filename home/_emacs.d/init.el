@@ -460,9 +460,11 @@
 (use-package lsp-treemacs :after lsp-mode treemacs)
 (use-package lsp-ivy :after lsp-mode ivy)
 
-(use-package lsp-pyright
-  :after lsp-mode
-  :hook (python-mode . (lambda () (require 'lsp-pyright) (lsp-deferred))))
+;; pyright only does type checking in python.
+;; python lsp does more (not type checking)
+;;(use-package lsp-pyright
+;;  :after lsp-mode
+;;  :hook (python-mode . (lambda () (require 'lsp-pyright) (lsp-deferred))))
 
 (use-package lsp-docker
   :after lsp-mode)
