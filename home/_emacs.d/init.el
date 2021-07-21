@@ -87,6 +87,9 @@
 ;;; EMACS TWEAKS
 ;;;
 
+;; disable electric-indent-mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
 ;; scratch buffer
 (setq initial-major-mode 'org-mode)
 (setq initial-scratch-message nil)
