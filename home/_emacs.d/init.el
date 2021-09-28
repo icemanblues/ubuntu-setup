@@ -9,6 +9,7 @@
 ;; M-x all-the-icons-install-fonts
 
 ;; add one of the below to add the theme to your ~/emacs.d/init.el
+;; (load-theme 'doom-dark+ t)
 ;; (load-theme 'doom-outrun-electric t)
 ;; (load-theme 'doom-laserwave t)
 ;; (load-theme 'doom-one t)
