@@ -470,8 +470,8 @@
 ;;  :after lsp-mode
 ;;  :hook (python-mode . (lambda () (require 'lsp-pyright) (lsp-deferred))))
 
-(use-package lsp-docker
-  :after lsp-mode)
+;; temporarily disabling lsp-docker since the package is broken.
+;;(use-package lsp-docker :after lsp-mode)
 
 ;;(use-package lsp-java :after lsp-mode)
 
