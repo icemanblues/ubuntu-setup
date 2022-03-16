@@ -23,8 +23,8 @@ install gopls
 install dlv
 
 ```
-go get golang.org/x/tools/gopls@latest
-go get github.com/go-delve/delve/cmd/dlv
+go install golang.org/x/tools/gopls@latest
+go install github.com/go-delve/delve/cmd/dlv@latest
 ```
 
 ### Rust 
