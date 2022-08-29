@@ -1,0 +1,20 @@
+   56  sudo pacman -S jdk-openjdk
+   60  sudo pacman -S ttf-ubuntu-font-family
+   61  sudo pacman -S ttf-roboto ttf-roboto-mono
+   63  sudo pacman -S code
+    6  sudo pacman -S nvidia-prime
+   13  sudo pacman -S discord
+   23  sudo pacman -S hunspell
+   24  sudo pacman -S hunspell-en_us
+   25  sudo pacman -S hugo ripgrep
+   26  sudo pacman -S the_silver_searcher
+   27  sudo pacman -S vlc mpv
+   28  sudo pacman -S dbeaver
+   29  sudo pacman -S slack-desktop
+
+   37  sudo pacman -S python-pip
+   51  sudo pacman -S docker
+   64  sudo pacman -S libusb
+   65  sudo pacman -S libusb-dev
+   77  sudo pacman -S tlp
+

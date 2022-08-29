@@ -1,0 +1,3 @@
+   68  yay -S google-chrome
+   30  sudo yay -S slack-desktop
+yay -S auto-cpufreq
