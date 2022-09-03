@@ -23,4 +23,5 @@ set registry to use time as UTC and not RTC
 
 NetworkManager ping
 20-connectivity
+[static ip address](https://nanxiao.me/en/configure-static-ip-address-on-arch-linux/)
 
