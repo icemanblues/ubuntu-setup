@@ -24,6 +24,12 @@ nfsutils
 
 [Relevant Wiki page](https://wiki.archlinux.org/title/OpenVPN#Starting_OpenVPN)
 
+## firewall
+
+- install ufw (uncomplicated fire wall)
+  - install iptables (if you don't already have it)
+- Follow the [basic configuration](https://wiki.archlinux.org/title/Uncomplicated_Firewall) steps
+
 ## qbittorrent
 
 install the `-nox` package
@@ -40,3 +46,14 @@ Once started, use the WebUI to configure it
 I run it via docker-compose and map the port
 
 use networkmanager conf to provide a static ip so that it is easily found as a DNS service
+
+Or set your local networkmanager to point to the local host for DNS (pi-hole)
+
+## nvidia drivers
+
+After installing the nvidia drivers, also install the following software
+
+- nvidia prime, which provides prime-run
+- switcheroo-central, which lets you decide on launch to use the discrete graphics card
+  you'll need to start the systemd service for switcheroo
+  
