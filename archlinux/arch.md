@@ -9,8 +9,8 @@ pacman -U /path/to/file.zst
 For PC and TV setup, get gdm to select the correct monitor
 copy the user cfg to the system (gdm) cfg
 
-create swapfile
-setup hibernate on laptop
+create [swapfile](https://wiki.archlinux.org/title/swap)
+setup [hibernate on laptop](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate) Suspend to both
 
 emacs.service on systemctl
 $EDITOR set to emacsclient

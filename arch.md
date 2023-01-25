@@ -10,12 +10,10 @@ Yet Another [arch.md](arch/arch.md)
 
 ## AUR helper
 
-yay
+[yay](https://aur.archlinux.org/packages/yay)
 
 ## Stop repeated pings
-ping.archlinux.org
-
-https://wiki.archlinux.org/title/NetworkManager#Configuration
+[ping.archlinux.org](https://wiki.archlinux.org/title/NetworkManager#Configuration)
 
 ## Enable parallel downloads
 This is a config in `/etc/pacman.conf`
@@ -24,17 +22,22 @@ This is a config in `/etc/pacman.conf`
 Install `intel-ucode` or `amd-ucode`
 
 ## Better laptop battery life
-Install the following
-- tlp 
-- autocpu-freq 
-- powertop or power-profiles-daemon
+Install the following:
+- `tlp` 
+- `autocpu-freq`
+- `powertop` or power-profiles-daemon
 
 ## install noto-fonts
 This includes a good number of compatible fonts
 
+`noto-fonts`
+`ttf-ubuntu-font-family`
+`ttf-roboto`
+`ttf-roboto-mono`
+
 ## nas
 
-nfsutils
+`nfsutils`
 /etc/fstab edits
 
 ## open vpn
@@ -43,6 +46,12 @@ nfsutils
 - Then change the *.ovpn file extension to *.conf
 - Then copy it to the `/etc/openvpn/client directory`
 - Start the systemd service as per the wiki
+
+If using an older client conf, might need to add this line
+
+```
+tls-cipher "DEFAULT:@SECLEVEL=0"
+```
 
 [Relevant Wiki page](https://wiki.archlinux.org/title/OpenVPN#Starting_OpenVPN)
 
@@ -73,21 +82,23 @@ Or set your local networkmanager to point to the local host for DNS (pi-hole)
 
 ## nvidia drivers
 
-After installing the nvidia drivers, also install the following software
+After installing the `nvidia` drivers, also install the following software
 
-- nvidia prime, which provides prime-run
-- switcheroo-central, which lets you decide on launch to use the discrete graphics card
-  you'll need to start the systemd service for switcheroo
-  
-# Recommendations
-
-I haven't done all of these yet but I will when I need theme
+- `nvidia prime`, which provides prime-run
+- `switcheroo-central`, which lets you decide on launch to use the discrete graphics card
+  you'll need to start the systemd service for switcheroo. Switcheroo is not compatible with optimus software.
 
 ## Enable paccache.timer
 This cleans up package cache weekly
+See `paccache` under [pacman-contrib](https://wiki.archlinux.org/title/Pacman)
 
 ## Enable fstrim.timer
 This is used to maintain good health with SSD
+See `util-linux` under [blah](https://wiki.archlinux.org/title/Solid_state_drive)
+
+# Recommendations
+
+I haven't done all of these yet but I will when I need theme
 
 ## Install reflector
 Frequenct updates to mirrorlist automatically
