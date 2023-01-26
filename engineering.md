@@ -76,6 +76,12 @@ pip3 install --user mypy autopep8 pylint flake8
 pip3 install --user mypy autopep8 pylint flake8 --upgrade
 ```
 
+And all in one line
+
+```
+python -m pip install --user python-lsp-server mypy-ls ptvsd mypy autopep8 pylint flake8 --upgrade
+```
+
 ### Java
 
 I download the openjdk from the website and install it to `/opt/java`
@@ -101,7 +107,7 @@ Then use npm to globally install these must haves
 * dockerfile-language-server-nodejs
 
 ```
-npm up typescript pyright typescript-language-server dockerfile-language-server-nodejs -g
+npm up typescript typescript-language-server dockerfile-language-server-nodejs -g
 ```
 
 
@@ -134,5 +140,5 @@ Popular Images:
 
 ### nginx
 
-install the ubuntu repo version
+install the repo version
 
