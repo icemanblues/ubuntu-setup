@@ -1,19 +1,14 @@
-pacman -S jdk-openjdk
-pacman -S ttf-ubuntu-font-family
-pacman -S ttf-roboto ttf-roboto-mono
-pacman -S code
-pacman -S nvidia-prime
-pacman -S discord
-pacman -S hunspell
-pacman -S hunspell-en_us
-pacman -S hugo ripgrep
-pacman -S the_silver_searcher
-pacman -S vlc mpv
-pacman -S dbeaver
-pacman -S slack-desktop
+noto-fonts ttf-liberation ttf-ubuntu-font-family ttf-roboto ttf-roboto-mono
+nvidia-prime
+discord
+slack-desktop
+hunspell hunspell-en_us
+hugo
+ripgrep the_silver_searcher
+vlc mpv
+code
+dbeaver
+docker
+jdk-openjdk
 
-pacman -S python-pip
-pacman -S docker
-pacman -S libusb
-pacman -S libusb-dev
-pacman -S tlp
+tlp

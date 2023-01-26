@@ -22,7 +22,7 @@ This is a config in `/etc/pacman.conf`
 Install `intel-ucode` or `amd-ucode`
 
 ## Better laptop battery life
-Install the following:
+Install the one of the following:
 - `tlp` 
 - `autocpu-freq`
 - `powertop` or power-profiles-daemon
@@ -74,7 +74,7 @@ Once started, use the WebUI to configure it
 - network interface
 
 ## pihole
-I run it via docker-compose and map the port
+I run it via [docker-compose](https://github.com/pi-hole/docker-pi-hole#quick-start) and map the port
 
 use networkmanager conf to provide a static ip so that it is easily found as a DNS service
 
