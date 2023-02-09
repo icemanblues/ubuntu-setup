@@ -96,6 +96,14 @@ See `paccache` under [pacman-contrib](https://wiki.archlinux.org/title/Pacman)
 This is used to maintain good health with SSD
 See `util-linux` under [blah](https://wiki.archlinux.org/title/Solid_state_drive)
 
+## Disable suspend/ hibernate if running a server
+
+- Disable in [systemd](https://wiki.archlinux.org/title/Power_management#Power_management_with_systemd)
+- Disable in [logind](https://www.freedesktop.org/software/systemd/man/logind.conf.html)
+- Disable in desktop (gnome)
+
+[All in one instructions](https://forum.manjaro.org/t/howto-disable-turn-off-hibernate-completely/8033)
+
 # Recommendations
 
 I haven't done all of these yet but I will when I need theme
