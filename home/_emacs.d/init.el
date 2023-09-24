@@ -97,7 +97,7 @@
 
 ;; UI tweaks
 (column-number-mode t)
-(global-linum-mode 1)
+(display-line-numbers-mode 1)
 (show-paren-mode t)
 (tool-bar-mode 0)
 (global-hl-line-mode t)
