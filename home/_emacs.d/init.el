@@ -589,6 +589,12 @@
 (use-package nginx-mode)
 (use-package company-nginx)
 
+;; caddy caddyfile
+(use-package caddyfile-mode
+  :ensure t
+  :mode (("Caddyfile\\'" . caddyfile-mode)
+         ("caddy\\.conf\\'" . caddyfile-mode)))
+
 ;; restclient
 (use-package restclient)
 (use-package company-restclient)
