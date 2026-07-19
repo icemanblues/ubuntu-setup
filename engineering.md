@@ -110,6 +110,14 @@ Then use npm to globally install these must haves
 npm up typescript typescript-language-server dockerfile-language-server-nodejs -g
 ```
 
+### YAML, HTML, and other web languages
+
+```
+npm install -g yaml-language-server
+yay -S vscode-langservers-extracted
+```
+
+Optionally, both are available via npm
 
 ## Code Editors and IDEs
 
