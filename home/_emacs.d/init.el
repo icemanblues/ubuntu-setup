@@ -601,6 +601,15 @@
 (use-package company-restclient)
 
 ;;;
+;;; AI agent
+;;;
+
+; (use-package gptel)
+; (use-package mcp)
+; (use-package agent-shell)
+; (use-package gptel-agent)
+
+;;;
 ;;; Fun:
 ;;;
 
