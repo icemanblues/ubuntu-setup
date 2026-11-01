@@ -96,8 +96,10 @@
 (setq initial-scratch-message nil)
 
 ;; UI tweaks
-(column-number-mode t)
+(setq display-line-numbers-type 'relative)
 (display-line-numbers-mode 1)
+(global-display-line-numbers-mode 1)
+(column-number-mode t)
 (show-paren-mode t)
 (tool-bar-mode 0)
 (global-hl-line-mode t)
