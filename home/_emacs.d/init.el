@@ -292,6 +292,12 @@
 ;;; UTILITIES
 ;;;
 
+;; vterm
+(use-package vterm
+  :config
+  ;; Increase scrollback limit from the default 1,000 to 10,000 lines
+  (setq vterm-max-scrollback 10000))
+
 ;; magit
 (use-package magit
   :bind ("C-x g" . magit-status))
