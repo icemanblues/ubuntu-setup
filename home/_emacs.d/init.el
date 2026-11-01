@@ -583,7 +583,6 @@
 
 ;; docker
 (use-package dockerfile-mode)
-(use-package docker-compose-mode)
 
 ;; nginx
 (use-package nginx-mode)
