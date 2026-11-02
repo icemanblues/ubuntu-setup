@@ -456,6 +456,8 @@
   (lsp-modeline-code-actions-mode)
   (lsp-modeline-workspace-status-mode)
   (lsp-headerline-breadcrumb-mode)
+  :bind
+  ("C-M-." . lsp-find-references)
   :commands
   (lsp lsp-deferred)
   :hook
