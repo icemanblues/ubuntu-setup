@@ -1,4 +1,5 @@
-;; init.el --- icemanblues's emacs configurations         -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
+;; init.el --- icemanblues's emacs configurations
 
 ;;; Commentary:
 
@@ -335,12 +336,14 @@
 (use-package projectile
   :init
   ;; put all your project directories here
-  (setq projectile-project-search-path '("~/code/"))
+  (setq projectile-auto-discover t)
+  (setq projectile-project-search-path '("~/code/" "~/Projects/"))
   (setq projectile-switch-project-action #'projectile-dired)
   (setq projectile-completion-system 'ivy)
   :bind-keymap ("C-c p" . projectile-command-map)
   :config
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (projectile-discover-projects-in-search-path))
 
 (use-package counsel-projectile
   :after projectile
@@ -609,7 +612,7 @@
 (use-package company-restclient)
 
 ;;;
-;;; AI agent
+;;; LLM AI agent
 ;;;
 
 ; (use-package gptel)
