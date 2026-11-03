@@ -74,7 +74,15 @@ Not strictly modernization; decide per preference.
 
 - ⏸️ `projectile` → built-in `project.el` (projectile still fine)
 - ⏸️ `lsp-mode` → built-in `eglot` (lsp-mode still fine)
-- ⏸️ Revisit `minimap`, `sx`, `ein`, `centaur-tabs` for continued use
+- ✅ Revisit `minimap` / `sx` / `ein` / `centaur-tabs` (+ dart/flutter) — done:
+  - `minimap` **kept**, off by default, documented as an opt-in demo (`M-x minimap-mode`)
+  - `sx` **removed** (no longer used; frees the `C-c s` prefix)
+  - `ein` **removed** (notebooks handled elsewhere)
+  - dart/flutter stack **removed** (`dart-mode`, `flutter`, `flutter-l10n-flycheck`
+    + the `dart-mode` LSP hook) — no longer doing Dart/Flutter work
+  - `centaur-tabs` **replaced** with built-in `global-tab-line-mode` (native,
+    minimal: per-window buffer tabs, `C-<tab>`/`C-S-<tab>` nav; no tab icons /
+    projectile grouping)
 
 ---
 
@@ -99,3 +107,9 @@ Not strictly modernization; decide per preference.
   go/rust before-save + cargo hooks and all LSP hooks to the `-ts-mode` names.
   Verified on Emacs 31.1: parses OK, all 11 ts-modes available. NOTE: grammars
   must be built once via `M-x my/treesit-install-all-grammars` (needs a C compiler).
+- 2026-11-03 — **Stage 5 complete.** Kept `minimap` (off by default, documented
+  opt-in); removed `sx`, `ein`, and the dart/flutter stack (incl. the `dart-mode`
+  LSP hook); replaced `centaur-tabs` with built-in `global-tab-line-mode`
+  (native/minimal). README + plan updated. Verified on Emacs 31.1: parses OK,
+  `global-tab-line-mode` and the tab-line nav commands resolve, only comment
+  references to centaur-tabs remain.

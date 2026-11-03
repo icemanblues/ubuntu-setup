@@ -96,7 +96,7 @@ Standalone packages still in use:
 * company
 * projectile
 * treemacs
-* centaur tabs
+* tab-line (built-in; replaced centaur-tabs)
 
 * yasnippet
   * yasnippet-snippets 
@@ -122,7 +122,6 @@ I should also look to migrate more functionality to LSP mode
 * gnus
 * wanderlust
 * slack
-* stackoverflow
 * twittering-mode
 
 ### Fun

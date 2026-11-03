@@ -303,19 +303,6 @@
 (use-package kubernetes
   :commands (kubernetes-overview))
 
-;; stackoverflow
-(use-package sx
-  :config
-  (bind-keys :prefix "C-c s"
-             :prefix-map my-sx-map
-             :prefix-docstring "Global keymap for SX."
-             ("q" . sx-tab-all-questions)
-             ("i" . sx-inbox)
-             ("o" . sx-open-link)
-             ("u" . sx-tab-unanswered-my-tags)
-             ("a" . sx-ask)
-             ("s" . sx-search)))
-
 ;;;
 ;;; CODE EDITOR (IDE)
 ;;;
@@ -389,21 +376,12 @@
 (use-package hl-todo
   :config (global-hl-todo-mode))
 
-;; centaur tabs
-(use-package centaur-tabs
-  :demand
-  :init
-  (setq centaur-tabs-set-icons t)
-  (setq centaur-tabs-icon-type 'nerd-icons) ; use nerd-icons rather than all-the-icons
-  :config
-  (centaur-tabs-mode t)
-  (centaur-tabs-group-by-projectile-project)
-  :bind
-  ("C-S-<tab>" . centaur-tabs-backward)
-  ("C-<tab>" . centaur-tabs-forward)
-  ("C-c t s" . centaur-tabs-counsel-switch-group)
-  ("C-c t p" . centaur-tabs-group-by-projectile-project)
-  ("C-c t g" . centaur-tabs-group-buffer-groups))
+;; tab-line: built-in per-window buffer tabs (replaces the third-party
+;; centaur-tabs).  Minimal/native setup: defaults group by major mode, no tab
+;; icons or projectile grouping.
+(global-tab-line-mode 1)
+(global-set-key (kbd "C-<tab>")   #'tab-line-switch-to-next-tab)
+(global-set-key (kbd "C-S-<tab>") #'tab-line-switch-to-prev-tab)
 
 ;; treemacs
 (use-package treemacs
@@ -432,6 +410,9 @@
   :after treemacs nerd-icons
   :config (treemacs-load-theme "nerd-icons"))
 
+;; minimap: kept available but intentionally OFF by default (I don't use it).
+;; Retained so it can be demoed to others who like a minimap UI — toggle it on
+;; with `M-x minimap-mode'.  (That's why the activation below stays commented.)
 (use-package minimap
   :init
   (setq minimap-automatically-delete-window 't)
@@ -521,7 +502,6 @@
   ;; must target the *-ts-mode names (e.g. python-ts-mode, not python-mode).
   :hook
   ((python-ts-mode . lsp-deferred)
-   (dart-mode . lsp-deferred)
    (js-ts-mode . lsp-deferred)
    (typescript-ts-mode . lsp-deferred)
    (tsx-ts-mode . lsp-deferred)
@@ -602,21 +582,6 @@
 (setq python-shell-interpreter "python3")
 
 (use-package pyvenv)
-
-(use-package ein)
-
-;; flutter / dart
-(use-package dart-mode)
-
-(use-package flutter
-  :after dart-mode
-  :bind (:map dart-mode-map
-              ("C-M-x" . #'flutter-run-or-hot-reload)))
-
-(use-package flutter-l10n-flycheck
-  :after flutter
-  :config
-  (flutter-l10n-flycheck-setup))
 
 ;; golang — go-ts-mode is built in; no external go-mode package needed.
 ;; Set up before-save hooks to format the buffer and add/delete imports via LSP.
