@@ -219,7 +219,7 @@
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
+;(global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 (global-set-key (kbd "C-c k") 'counsel-rg)
 (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -615,7 +615,16 @@
 ;;; LLM AI agent
 ;;;
 
-; (use-package gptel)
+(use-package gptel
+  :bind (("C-c g g" . gptel)          ; Open a new dedicated chat buffer
+         ("C-c g m" . gptel-menu)     ; Pop up the configuration menu (change models/prompts)
+         ("C-c g s" . gptel-send)     ; Send the current region or buffer from anywhere
+         ("C-c g r" . gptel-rewrite)) ; Refactor or rewrite selected text
+  :config
+  ;; Example: If you prefer sending with Ctrl+Return inside chat buffers
+  (define-key gptel-mode-map (kbd "C-<return>") 'gptel-send))
+
+
 ; (use-package mcp)
 ; (use-package agent-shell)
 ; (use-package gptel-agent)
