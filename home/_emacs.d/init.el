@@ -3,13 +3,23 @@
 
 ;;; Commentary:
 
-;; add this line to your top of your local ~/emacs.d/init.el
-;; (load-file "path/to/this/init.el")
+;; Install location: use the XDG convention and place this config under
+;; ~/.config/emacs/ (modern Emacs 27+ honors XDG_CONFIG_HOME; the legacy
+;; ~/.emacs.d/ still works if it already exists).
+;;
+;; This file can be loaded two ways:
+;;   1. Directly as ~/.config/emacs/init.el, or
+;;   2. Sourced from your own init.el with:
+;;        (load-file "path/to/this/init.el")
+;;
+;; NOTE: early-init.el is NOT loadable via (load-file ...).  Emacs only reads
+;; early-init.el from the real `user-emacs-directory' (e.g. ~/.config/emacs/)
+;; before init runs, so it must physically live there to take effect.
 
 ;; On your first load, you'll need to run this manually once
-;; M-x all-the-icons-install-fonts
+;; M-x nerd-icons-install-fonts
 
-;; add one of the below to add the theme to your ~/emacs.d/init.el
+;; add one of the below to add the theme to your config (see install location above)
 ;; (load-theme 'doom-dark+ t)
 ;; (load-theme 'doom-outrun-electric t)
 ;; (load-theme 'doom-laserwave t)
@@ -22,41 +32,8 @@
 
 ;;; Code:
 
-;;;
-;;; Garbage Collection
-;;;
-
-;; no gc during startup
-
-(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
-      doom-gc-cons-threshold 16777216 ; 16mb
-      gc-cons-percentage 0.6)
-
-(add-hook 'emacs-startup-hook
-  (lambda ()
-    (setq gc-cons-threshold doom-gc-cons-threshold
-          gc-cons-percentage 0.1)))
-
-;; no gc during minibuffer use
-(defun doom-defer-garbage-collection-h ()
-  (setq gc-cons-threshold most-positive-fixnum))
-
-(defun doom-restore-garbage-collection-h ()
-  ;; Defer it so that commands launched immediately after will enjoy the
-  ;; benefits.
-  (run-at-time
-   1 nil (lambda () (setq gc-cons-threshold doom-gc-cons-threshold))))
-
-(add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
-(add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
-
-;; Unset file-name-handler-alist temporarily
-
-(defvar doom--file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-(add-hook 'emacs-startup-hook
-  (lambda ()
-    (setq file-name-handler-alist doom--file-name-handler-alist)))
+;; NOTE: startup-performance tweaks (GC tuning and file-name-handler-alist)
+;; now live in early-init.el, which Emacs loads earlier than this file.
 
 ;;;
 ;;; MELPA
@@ -65,8 +42,10 @@
 (setq package-quickstart t)
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+;; NOTE: the old Org ELPA (orgmode.org/elpa) was shut down; Org now ships via
+;; GNU/non-GNU ELPA, so no dedicated archive entry is needed.
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -74,10 +53,7 @@
 ;;; USE PACKAGE
 ;;;
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
+;; use-package is built into Emacs 29+, so no bootstrap/install is required.
 (eval-when-compile
   (require 'use-package))
 (setq use-package-always-ensure t)
@@ -98,7 +74,6 @@
 
 ;; UI tweaks
 (setq display-line-numbers-type 'relative)
-(display-line-numbers-mode 1)
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
 (show-paren-mode t)
@@ -191,13 +166,23 @@
 ;;(use-package golden-ratio
 ;;  :config (golden-ratio-mode 1))
 
-;; all the icons
-(use-package all-the-icons)
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
-(use-package all-the-icons-ivy
+;; nerd-icons (the modern successor to all-the-icons; renders in the terminal
+;; too).  Run `M-x nerd-icons-install-fonts' once on first load.
+(use-package nerd-icons)
+(use-package nerd-icons-dired
+  :diminish
+  :hook (dired-mode . nerd-icons-dired-mode))
+
+;; Completion-UI icons.  BRIDGE: while we still run Ivy/counsel, use
+;; nerd-icons-ivy-rich (the nerd-icons successor to all-the-icons-ivy; it needs
+;; ivy-rich).  When Stage 3 migrates to the vertico stack, this is replaced by
+;; `nerd-icons-completion' (which integrates with marginalia).
+(use-package ivy-rich
   :after ivy
-  :init (add-hook 'after-init-hook 'all-the-icons-ivy-setup))
+  :init (ivy-rich-mode 1))
+(use-package nerd-icons-ivy-rich
+  :after ivy-rich
+  :init (nerd-icons-ivy-rich-mode 1))
 
 ;; ivy, counsel, swiper
 (use-package ivy :diminish
@@ -369,10 +354,8 @@
 (use-package highlight-parentheses
   :config (highlight-parentheses-mode 1))
 
-;; flymake
-(use-package flymake :diminish)
-
-;; flycheck
+;; flycheck is the global syntax checker.  (Emacs ships flymake built-in; we
+;; standardize on flycheck here rather than loading both.)
 (use-package flycheck
   :diminish
   :config (global-flycheck-mode))
@@ -388,13 +371,14 @@
 ;; yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (prog-mode . yas-global-mode))
+  :hook (prog-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets
   :after yasnippet)
 
-;; editorconfig
+;; editorconfig is built into Emacs 30+; only pull the package on older Emacs.
 (use-package editorconfig
+  :ensure (not (locate-library "editorconfig"))
   :diminish
   :config (editorconfig-mode 1))
 
@@ -407,6 +391,7 @@
   :demand
   :init
   (setq centaur-tabs-set-icons t)
+  (setq centaur-tabs-icon-type 'nerd-icons) ; use nerd-icons rather than all-the-icons
   :config
   (centaur-tabs-mode t)
   (centaur-tabs-group-by-projectile-project)
@@ -438,6 +423,11 @@
 
 (use-package treemacs-magit
   :after treemacs magit)
+
+;; use the nerd-icons theme for the treemacs file tree
+(use-package treemacs-nerd-icons
+  :after treemacs nerd-icons
+  :config (treemacs-load-theme "nerd-icons"))
 
 (use-package minimap
   :init

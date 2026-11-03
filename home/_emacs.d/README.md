@@ -48,7 +48,7 @@ These packages are ones that I want to learn more about and to add them to my wo
 * rainbow-mode
 * rainbow-delimiters
 
-* all-the-icons
+* nerd-icons (+ nerd-icons-dired, treemacs-nerd-icons; replaces all-the-icons)
 * dimish
 
 * ivy
