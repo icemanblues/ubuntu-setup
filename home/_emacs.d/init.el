@@ -366,9 +366,9 @@
 (use-package yasnippet-snippets
   :after yasnippet)
 
-;; editorconfig is built into Emacs 30+; only pull the package on older Emacs.
+;; editorconfig is built into Emacs 30+.
 (use-package editorconfig
-  :ensure (not (locate-library "editorconfig"))
+  :ensure nil
   :diminish
   :config (editorconfig-mode 1))
 
