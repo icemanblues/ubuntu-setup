@@ -70,17 +70,21 @@ These packages are ones that I want to learn more about and to add them to my wo
 
 ### Programming modes
 
+Language editing now uses the built-in tree-sitter modes on Emacs 29+
+(`python-ts-mode`, `js-ts-mode`, `typescript-ts-mode`, `tsx-ts-mode`,
+`json-ts-mode`, `yaml-ts-mode`, `toml-ts-mode`, `go-ts-mode`, `rust-ts-mode`,
+`dockerfile-ts-mode`). Run `M-x my/treesit-install-all-grammars` once to build
+the grammars (needs a C compiler).
+
+Standalone packages still in use:
+
 * markdown-mode
-* go-mode
-* docker-compose-mode
+* protobuf-mode
 * nginx-mode
-* yaml-mode
-* json-mode
-* docker-mode
 * web-mode
-* js2-mode
 * emmet-mode
 * restclient.el
+* caddyfile-mode
 
 ### IDE functionality
 

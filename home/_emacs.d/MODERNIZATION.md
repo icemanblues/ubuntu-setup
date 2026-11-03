@@ -39,7 +39,7 @@ The ecosystem default moved to `nerd-icons` (renders in terminal too).
 
 ## Stage 3 — Completion: Ivy → Vertico stack (the big one)
 
-> **Deferred to a future session.** When starting Stage 3, remove the bridge
+> **Deferred / skipped for now.** When picking this up, remove the bridge
 > packages added in 2.3 (`nerd-icons-ivy-rich`, `ivy-rich`) along with ivy itself,
 > and wire up `nerd-icons-completion` instead.
 
@@ -58,13 +58,15 @@ Replace Ivy/Counsel/Swiper with Vertico + Consult + Orderless + Marginalia + Emb
 
 Adopt built-in `treesit` modes; retire regex/abandoned modes.
 
-- ⬜ **4.1** Configure `treesit-language-source-alist` + grammar install flow
-- ⬜ **4.2** `python-mode` → `python-ts-mode`
-- ⬜ **4.3** `typescript-mode` → `typescript-ts-mode` / `tsx-ts-mode`
-- ⬜ **4.4** `js2-mode` + `rjsx-mode` (abandoned) → `js-ts-mode` / `tsx-ts-mode`
-- ⬜ **4.5** `go-mode` → `go-ts-mode`, `rust-mode` → `rust-ts-mode`
-- ⬜ **4.6** `json-mode`/`yaml-mode`/`dockerfile-mode` → `-ts-mode` variants
-- ⬜ **4.7** Update all LSP hooks to the new `-ts-mode` names
+- ✅ **4.1** Added `treesit-language-source-alist` + `my/treesit-install-all-grammars`
+  helper; remaps via `major-mode-remap-alist` + explicit `auto-mode-alist` entries
+- ✅ **4.2** `python-mode` → `python-ts-mode`
+- ✅ **4.3** `typescript-mode` → `typescript-ts-mode` / `tsx-ts-mode` (package removed)
+- ✅ **4.4** `js2-mode` + `rjsx-mode` (abandoned) → `js-ts-mode` / `tsx-ts-mode` (packages removed)
+- ✅ **4.5** `go-mode` → `go-ts-mode`, `rust-mode` → `rust-ts-mode` (packages removed;
+  before-save/cargo hooks moved to the `-ts-mode` hooks)
+- ✅ **4.6** `json-mode`/`yaml-mode`/`toml-mode`/`dockerfile-mode` → `-ts-mode` variants (packages removed)
+- ✅ **4.7** LSP hooks retargeted to the `-ts-mode` names (ts-modes don't run the classic hooks)
 
 ## Stage 5 — Optional / evaluate later
 
@@ -90,3 +92,10 @@ Not strictly modernization; decide per preference.
 - 2026-11-03 — Added `nerd-icons-ivy-rich` + `ivy-rich` bridge so completion
   icons keep working on Ivy. Stage 3 (Vertico) deferred to a future session;
   remove the bridge when it starts.
+- 2026-11-03 — **Stage 4 complete** (Stage 3 skipped for now). Added TREE-SITTER
+  section (grammar sources + `my/treesit-install-all-grammars` + remaps +
+  auto-mode-alist). Migrated python/js/ts/tsx/json/yaml/toml/go/rust/dockerfile
+  to built-in `-ts-mode`; removed the superseded external packages; moved
+  go/rust before-save + cargo hooks and all LSP hooks to the `-ts-mode` names.
+  Verified on Emacs 31.1: parses OK, all 11 ts-modes available. NOTE: grammars
+  must be built once via `M-x my/treesit-install-all-grammars` (needs a C compiler).

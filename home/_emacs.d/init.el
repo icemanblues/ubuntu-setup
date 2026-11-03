@@ -19,6 +19,9 @@
 ;; On your first load, you'll need to run this manually once
 ;; M-x nerd-icons-install-fonts
 
+;; Also run this once to build the tree-sitter grammars (needs a C compiler)
+;; M-x my/treesit-install-all-grammars
+
 ;; add one of the below to add the theme to your config (see install location above)
 ;; (load-theme 'doom-dark+ t)
 ;; (load-theme 'doom-outrun-electric t)
@@ -436,6 +439,67 @@
   ;; :config (minimap-mode 1))
 
 ;;;
+;;; TREE-SITTER (Emacs 29+)
+;;;
+
+;; Built-in tree-sitter major modes replace the old regex-based / abandoned
+;; language packages (js2-mode, rjsx-mode, typescript-mode, json-mode, etc.).
+;; Grammars are compiled from source on demand; a C compiler is required.
+;;
+;; First-time setup: run `M-x my/treesit-install-all-grammars' once to build
+;; every grammar listed below (or `M-x treesit-install-language-grammar' per
+;; language).
+
+(setq treesit-language-source-alist
+      '((python     . ("https://github.com/tree-sitter/tree-sitter-python"))
+        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+        (tsx        . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+        (go         . ("https://github.com/tree-sitter/tree-sitter-go"))
+        (gomod      . ("https://github.com/camdencheek/tree-sitter-go-mod"))
+        (rust       . ("https://github.com/tree-sitter/tree-sitter-rust"))
+        (json       . ("https://github.com/tree-sitter/tree-sitter-json"))
+        (yaml       . ("https://github.com/ikatyang/tree-sitter-yaml"))
+        (toml       . ("https://github.com/tree-sitter/tree-sitter-toml"))
+        (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile"))))
+
+(defun my/treesit-install-all-grammars ()
+  "Install every grammar in `treesit-language-source-alist' not already present."
+  (interactive)
+  (dolist (lang (mapcar #'car treesit-language-source-alist))
+    (unless (treesit-language-available-p lang)
+      (treesit-install-language-grammar lang))))
+
+;; Remap legacy major modes to their tree-sitter equivalents.  Using
+;; `major-mode-remap-alist' keeps existing file associations intact while
+;; swapping in the ts-mode.
+(dolist (mapping '((python-mode     . python-ts-mode)
+                   (js-mode         . js-ts-mode)
+                   (js2-mode        . js-ts-mode)
+                   (javascript-mode . js-ts-mode)
+                   (typescript-mode . typescript-ts-mode)
+                   (json-mode       . json-ts-mode)
+                   (js-json-mode    . json-ts-mode)
+                   (yaml-mode       . yaml-ts-mode)
+                   (conf-toml-mode  . toml-ts-mode)
+                   (go-mode         . go-ts-mode)
+                   (rust-mode       . rust-ts-mode)
+                   (dockerfile-mode . dockerfile-ts-mode)))
+  (add-to-list 'major-mode-remap-alist mapping))
+
+;; Extensions with no built-in default association need explicit entries.
+;; (python/.py, js/.js, toml/.toml already map to classic modes that the
+;; remaps above redirect; ts/tsx/yaml/json/Dockerfile did not, so set them
+;; directly to the ts-mode here.)
+(add-to-list 'auto-mode-alist '("\\.ts\\'"       . typescript-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'"      . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.rs\\'"       . rust-ts-mode))
+(add-to-list 'auto-mode-alist '("/go\\.mod\\'"   . go-mod-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.ya?ml\\'"    . yaml-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'"     . json-ts-mode))
+(add-to-list 'auto-mode-alist '("[/\\]\\(?:Dockerfile\\|Containerfile\\)\\(?:\\.[^/\\]*\\)?\\'" . dockerfile-ts-mode))
+
+;;;
 ;;; LSP MODE
 ;;;
 
@@ -453,15 +517,16 @@
   ("C-M-." . lsp-find-references)
   :commands
   (lsp lsp-deferred)
+  ;; NOTE: tree-sitter modes do NOT derive from the classic modes, so hooks
+  ;; must target the *-ts-mode names (e.g. python-ts-mode, not python-mode).
   :hook
-  ((python-mode . lsp-deferred)
+  ((python-ts-mode . lsp-deferred)
    (dart-mode . lsp-deferred)
-   (js-mode . lsp-deferred)
-   (js2-mode . lsp-deferred)
-   (rjsx-mode . lsp-deferred)
-   (typescript-mode . lsp-deferred)
-   (rust-mode . lsp-deferred)
-   (go-mode . lsp-deferred)))
+   (js-ts-mode . lsp-deferred)
+   (typescript-ts-mode . lsp-deferred)
+   (tsx-ts-mode . lsp-deferred)
+   (rust-ts-mode . lsp-deferred)
+   (go-ts-mode . lsp-deferred)))
 
 (use-package lsp-ui :after lsp-mode)
 (use-package lsp-treemacs :after lsp-mode treemacs)
@@ -508,21 +573,15 @@
   (setq markdown-command "markdown") ; must install locally markdown or grip
   (setq markdown-split-window-direction 'right))
 
-(use-package json-mode)
-  
-(use-package yaml-mode)
-  
-(use-package toml-mode)
-  
+;; json / yaml / toml now use the built-in tree-sitter modes (json-ts-mode,
+;; yaml-ts-mode, toml-ts-mode) via the remaps in the TREE-SITTER section above,
+;; so the standalone json-mode / yaml-mode / toml-mode packages are gone.
+
 (use-package protobuf-mode)
 
-;; javascript typescript
-(use-package typescript-mode)
-
-(use-package js2-mode
-  :mode ("\\.js\\'" . js2-mode))
-
-(use-package rjsx-mode)
+;; javascript / typescript use the built-in js-ts-mode / typescript-ts-mode /
+;; tsx-ts-mode (see TREE-SITTER section).  The old typescript-mode, js2-mode
+;; and the abandoned rjsx-mode are no longer needed.
 
 ;; front-end
 (use-package web-mode
@@ -559,33 +618,26 @@
   :config
   (flutter-l10n-flycheck-setup))
 
-;; golang
+;; golang — go-ts-mode is built in; no external go-mode package needed.
+;; Set up before-save hooks to format the buffer and add/delete imports via LSP.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(add-hook 'go-ts-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'lsp-format-buffer t t)
+            (add-hook 'before-save-hook #'lsp-organize-imports t t)))
 
-(use-package go-mode
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  :hook
-  (go-mode . (lambda ()
-               (add-hook 'before-save-hook #'lsp-format-buffer t t)
-               (add-hook 'before-save-hook #'lsp-organize-imports t t))))
-
-;; rustlang
-
-(use-package rust-mode
-  :hook
-  (rust-mode . (lambda ()
-                 (add-hook `before-save-hook #'lsp-format-buffer t t))))
+;; rustlang — rust-ts-mode is built in; format on save via LSP.
+(add-hook 'rust-ts-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'lsp-format-buffer t t)))
 
 (use-package cargo
-  :hook (rust-mode . cargo-minor-mode))
+  :hook (rust-ts-mode . cargo-minor-mode))
 
 (use-package flycheck-rust
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-;; docker
-(use-package dockerfile-mode)
+;; docker — dockerfile-ts-mode is built in (see TREE-SITTER remaps above).
 
 ;; nginx
 (use-package nginx-mode)
