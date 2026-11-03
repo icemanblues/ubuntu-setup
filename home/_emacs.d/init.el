@@ -615,6 +615,14 @@
 ;;; LLM AI agent
 ;;;
 
+(use-package mcp
+  :defer t
+  :custom
+  ;; Define your MCP servers here (adjust commands/paths to your setup)
+  (mcp-hub-servers 
+   '(("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/path/to/workspace")))
+     ("fetch"      . (:command "uvx" :args ("mcp-server-fetch"))))))
+
 (use-package gptel
   :bind (("C-c g g" . gptel)          ; Open a new dedicated chat buffer
          ("C-c g m" . gptel-menu)     ; Pop up the configuration menu (change models/prompts)
@@ -622,12 +630,15 @@
          ("C-c g r" . gptel-rewrite)) ; Refactor or rewrite selected text
   :config
   ;; Example: If you prefer sending with Ctrl+Return inside chat buffers
-  (define-key gptel-mode-map (kbd "C-<return>") 'gptel-send))
+  (define-key gptel-mode-map (kbd "C-<return>") 'gptel-send)
+  ;; gptel-integrations is required to bridge gptel and mcp.el
+  (require 'gptel-integrations)
+  ;; Automatically register MCP tools when gptel loads
+  (add-hook 'gptel-load-hook #'gptel-mcp-connect))
 
-
-; (use-package mcp)
-; (use-package agent-shell)
-; (use-package gptel-agent)
+(use-package agent-shell
+  :bind (("C-c a s" . agent-shell)              ; Global launcher to select an agent
+         ("C-c a o" . agent-shell-opencode)))   ; Direct shortcut to launch OpenCode
 
 ;;;
 ;;; Fun:
