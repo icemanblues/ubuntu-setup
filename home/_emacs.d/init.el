@@ -622,18 +622,13 @@
 ;;; LLM AI agent
 ;;;
 
-(use-package mcp
-  :defer t
-  :custom
-  ;; Define your MCP servers here (adjust commands/paths to your setup)
-  (mcp-hub-servers 
-   '(("filesystem" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/path/to/workspace")))
-     ("fetch"      . (:command "uvx" :args ("mcp-server-fetch"))))))
+(use-package mcp :defer t)
 
 (use-package gptel
   :bind (("C-c g g" . gptel)          ; Open a new dedicated chat buffer
          ("C-c g m" . gptel-menu)     ; Pop up the configuration menu (change models/prompts)
          ("C-c g s" . gptel-send)     ; Send the current region or buffer from anywhere
+         ("C-c g a" . gptel-add)      ; Add / Remove region from gptel's context
          ("C-c g r" . gptel-rewrite)) ; Refactor or rewrite selected text
   :config
   ;; Example: If you prefer sending with Ctrl+Return inside chat buffers
