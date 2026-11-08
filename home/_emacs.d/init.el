@@ -90,7 +90,7 @@
 (setq indent-line-function 'insert-tab)
 
 ;; backup file tweaks
-(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+(setq backup-directory-alist '(("" . "~/.config/emacs/backup")))
 
 ;; Font tweaks
 ;; ubuntu linux
