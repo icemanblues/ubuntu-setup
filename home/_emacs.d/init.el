@@ -622,7 +622,10 @@
 ;;; LLM AI agent
 ;;;
 
-(use-package mcp :defer t)
+(use-package mcp 
+  :after gptel
+  :config (require 'mcp-hub)
+  :hook (after-init . mcp-hub-start-all-server))
 
 (use-package gptel
   :bind (("C-c g g" . gptel)          ; Open a new dedicated chat buffer
